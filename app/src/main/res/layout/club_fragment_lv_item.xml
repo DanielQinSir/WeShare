@@ -52,6 +52,8 @@
         android:layout_below="@id/club_listview_item_title_tv"
         android:layout_alignLeft="@id/club_listview_item_title_tv"
         android:text="官方通告"
+        android:layout_toLeftOf="@id/club_listview_item_enter_bt"
+        android:layout_marginRight="10dp"
         />
 
 </RelativeLayout>

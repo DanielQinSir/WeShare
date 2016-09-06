@@ -27,8 +27,8 @@
     </RelativeLayout>
     <FrameLayout
         android:id="@+id/club_fragment_viewpager_fm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"

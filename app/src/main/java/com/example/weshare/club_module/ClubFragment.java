@@ -1,6 +1,7 @@
 package com.example.weshare.club_module;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
@@ -125,7 +125,7 @@ public class ClubFragment extends Fragment
         @Override
         public int getCount()
         {
-            return mData.getModule_num();
+            return mData == null ? 0 : mData.getModule_num();
         }
 
         @Override
@@ -164,15 +164,23 @@ public class ClubFragment extends Fragment
                 @Override
                 public void onClick(View view)
                 {
-                    Toast.makeText(mContext, mData.getModule().get((Integer) view.getTag()).getModule_name(), Toast.LENGTH_SHORT).show();
+                    String id = mData.getModule().get((Integer) view.getTag()).getId();
+                    goToDetailActivity(id);
                 }
-            });
+           });
             return itemView;
         }
 
     }
 
-    private class ViewHolder
+    private void goToDetailActivity(String id)
+    {
+        Intent intent = new Intent(mContext, ClubDetailActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
+     class ViewHolder
     {
 
         @BindView(R.id.club_listview_item_head_iv)

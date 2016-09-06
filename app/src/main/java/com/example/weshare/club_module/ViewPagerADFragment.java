@@ -82,6 +82,7 @@ public class ViewPagerADFragment extends Fragment
         mLinearLayout = (LinearLayout) view.findViewById(R.id.point_ll);
         mMyadapter = new Myadater();
         viewpager.setAdapter(mMyadapter);
+        viewpager.setOffscreenPageLimit(mDatas.size());
         setItemSelected(0);
 
         viewpager.setOnTouchListener(new View.OnTouchListener()
@@ -158,7 +159,7 @@ public class ViewPagerADFragment extends Fragment
         {
             ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(mContext).load(mDatas.get(position)).into(imageView);
+            Glide.with(mContext).load(mDatas.get(position).getPicurl()).into(imageView);
             imageView.setTag(position);
             imageView.setOnClickListener(new View.OnClickListener()
             {

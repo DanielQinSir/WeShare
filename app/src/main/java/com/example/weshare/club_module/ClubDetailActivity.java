@@ -3,7 +3,10 @@ package com.example.weshare.club_module;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +19,16 @@ import butterknife.ButterKnife;
 public class ClubDetailActivity extends AppCompatActivity
 {
 
-    @BindView(R.id.club_fragment_bar_mine_iv)
-    ImageView mClubFragmentBarMineIv;
-    @BindView(R.id.club_detail_title_tv)
-    TextView mClubDetailTitleTv;
+    @BindView(R.id.club_detail_bar_back_iv)
+    ImageView mClubDetailBarBackIv;
+    @BindView(R.id.club_detail_bar_title_tv)
+    TextView mClubDetailBarTitleTv;
     @BindView(R.id.club_detail_content_wv)
     WebView mClubDetailContentWv;
     private String id;
-    private String key = "type";
-    private String url = "http://www.xxiang365.com/mobile/control/forum/detail.php?" + key + "=" + id + "&sid=" + HttpServiceUtil.SID;
+    private String key = "index.php?type";
+    private String pre_Url = "http://www.xxiang365.com/mobile/control/forum/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,22 +51,46 @@ public class ClubDetailActivity extends AppCompatActivity
         switch (id)
         {
             case "1":
-            mClubDetailTitleTv.setText("官方通告");
+                mClubDetailBarTitleTv.setText("官方通告");
                 break;
             case "2":
-                mClubDetailTitleTv.setText("show菜");
+                mClubDetailBarTitleTv.setText("show菜");
                 break;
             case "8":
-                mClubDetailTitleTv.setText("线下活动");
+                mClubDetailBarTitleTv.setText("线下活动");
                 break;
             case "7":
-                mClubDetailTitleTv.setText("吐槽吧");
+                mClubDetailBarTitleTv.setText("吐槽吧");
                 break;
             default:
-                mClubDetailTitleTv.setText("主题帖");
-                key = "id";
+                mClubDetailBarTitleTv.setText("主题帖");
+                key = "detail.php?id";
                 break;
         }
-
+        mClubDetailBarBackIv.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
+        WebViewClient client = new WebViewClient()
+        {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                view.loadUrl(url);
+                return true;
+            }
+        };
+        mClubDetailContentWv.setWebViewClient(client);
+        WebSettings settings = mClubDetailContentWv.getSettings();
+        settings.setLoadWithOverviewMode(true);//设置WebView 支持加载更多格式页面
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//WebView加载页面优先使用缓存加载
+        String url = pre_Url + key + "=" + id + "&sid=" + HttpServiceUtil.SID;
+        mClubDetailContentWv.loadUrl(url);
     }
+
+
 }
