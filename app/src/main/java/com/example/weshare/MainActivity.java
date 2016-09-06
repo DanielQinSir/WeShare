@@ -1,12 +1,14 @@
 package com.example.weshare;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.weshare.assortment_module.AssortFragment;
 import com.example.weshare.club_module.ClubFragment;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager my_viewpager;
     private MyPagerAdapter adapter;
     private List<Fragment> fragments =new ArrayList<>();
+    private long exitTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         initDatas();
         initView();
     }
+
 
     private void initView() {
         my_radiogroup = (RadioGroup) findViewById(R.id.main_RG);
@@ -113,7 +117,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    class MyPagerAdapter extends FragmentPagerAdapter{
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            if ((System.currentTimeMillis() - exitTime) > 2000)
+            {
+                Toast.makeText(MainActivity.this, "再按一次退出程序!", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            }
+            else
+            {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+   private class MyPagerAdapter extends FragmentPagerAdapter{
 
         public MyPagerAdapter(FragmentManager fm){
             super(fm);

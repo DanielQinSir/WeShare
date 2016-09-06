@@ -1,6 +1,7 @@
 package com.example.weshare.club_module;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,10 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
+import com.example.weshare.databean.ADbean;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by: Daniel Qin
@@ -27,29 +32,33 @@ import com.example.weshare.R;
 
 public class ViewPagerADFragment extends Fragment
 {
+
     private Context mContext;
     private Myadater mMyadapter;
     private LinearLayout mLinearLayout;
     private ViewPager viewpager;
     private int time;
     private boolean isAutoScroll = true;
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler()
+    {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(Message msg)
+        {
 
-            viewpager.setCurrentItem(time%4);
-            time ++;
-            if (isAutoScroll) {
-                sendEmptyMessageDelayed(1,3333);
+            viewpager.setCurrentItem(time % 4);
+            time++;
+            if (isAutoScroll)
+            {
+                sendEmptyMessageDelayed(1, 3333);
             }
         }
     };
-    private String[] mDatas;
+    private List<ADbean> mDatas;
 
-    public static ViewPagerADFragment newInstance(String ...urlPath)
+    public static ViewPagerADFragment newInstance(List<ADbean> ads)
     {
         Bundle args = new Bundle();
-        args.putStringArray("url",urlPath);
+        args.putSerializable("ad", (Serializable) ads);
         ViewPagerADFragment fragment = new ViewPagerADFragment();
         fragment.setArguments(args);
         return fragment;
@@ -61,7 +70,7 @@ public class ViewPagerADFragment extends Fragment
         super.onCreate(savedInstanceState);
         mContext = getContext();
         Bundle arguments = getArguments();
-        mDatas = arguments.getStringArray("url");
+        mDatas = (List<ADbean>) arguments.getSerializable("ad");
     }
 
     @Nullable
@@ -75,10 +84,13 @@ public class ViewPagerADFragment extends Fragment
         viewpager.setAdapter(mMyadapter);
         setItemSelected(0);
 
-        viewpager.setOnTouchListener(new View.OnTouchListener() {
+        viewpager.setOnTouchListener(new View.OnTouchListener()
+        {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                switch (event.getAction())
+                {
                     case MotionEvent.ACTION_DOWN:
                         isAutoScroll = false;
                         //移除所有的处于等待状态的Message
@@ -86,7 +98,7 @@ public class ViewPagerADFragment extends Fragment
                         break;
                     case MotionEvent.ACTION_UP:
                         isAutoScroll = true;
-                        handler.sendEmptyMessageDelayed(1,3333);
+                        handler.sendEmptyMessageDelayed(1, 3333);
                         break;
                 }
                 return false;
@@ -112,7 +124,7 @@ public class ViewPagerADFragment extends Fragment
 
             }
         });
-        handler.sendEmptyMessageDelayed(1,3333);
+        handler.sendEmptyMessageDelayed(1, 3333);
         return view;
     }
 
@@ -132,7 +144,7 @@ public class ViewPagerADFragment extends Fragment
         @Override
         public int getCount()
         {
-            return mDatas == null ? 0 : mDatas.length;
+            return mDatas == null ? 0 : mDatas.size();
         }
 
         @Override
@@ -146,7 +158,17 @@ public class ViewPagerADFragment extends Fragment
         {
             ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(mContext).load(mDatas[position]).into(imageView);
+            Glide.with(mContext).load(mDatas.get(position)).into(imageView);
+            imageView.setTag(position);
+            imageView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    String id = mDatas.get((Integer) view.getTag()).getId();
+                    goToDetailActivity(id);
+                }
+            });
             container.addView(imageView);
             return imageView;
         }
@@ -156,6 +178,13 @@ public class ViewPagerADFragment extends Fragment
         {
             container.removeView((View) object);
         }
+    }
+
+    private void goToDetailActivity(String id)
+    {
+        Intent intent = new Intent(mContext, ClubDetailActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
 }

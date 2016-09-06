@@ -22,4 +22,36 @@
         android:layout_alignParentLeft="true"
        />
 
+    <Button
+        android:id="@+id/club_listview_item_enter_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="#88cc00"
+        android:layout_marginRight="20dp"
+        android:textColor="#fff"
+        android:text="进入"/>
+    <TextView
+        android:id="@+id/club_listview_item_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/club_listview_item_head_iv"
+        android:layout_margin="10dp"
+        android:text="官方通告"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/club_listview_item_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/club_listview_item_title_tv"
+        android:layout_alignLeft="@id/club_listview_item_title_tv"
+        android:text="官方通告"
+        />
+
 </RelativeLayout>
