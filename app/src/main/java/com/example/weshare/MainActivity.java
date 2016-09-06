@@ -13,6 +13,7 @@ import com.example.weshare.club_module.ClubFragment;
 import com.example.weshare.homepage_module.HomeFragment;
 import com.example.weshare.myshare_module.ShareFragment;
 import com.example.weshare.shoppingcart_module.ShoppingCartFragment;
+import com.example.weshare.utils.UpdateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        UpdateUtil.checkForUpdateBean(this);
         initDatas();
         initView();
     }
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        my_viewpager.setOffscreenPageLimit(5);
     }
 
     private void initDatas() {
