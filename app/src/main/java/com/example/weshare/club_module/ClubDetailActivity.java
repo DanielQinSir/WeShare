@@ -86,6 +86,8 @@ public class ClubDetailActivity extends AppCompatActivity
         };
         mClubDetailContentWv.setWebViewClient(client);
         WebSettings settings = mClubDetailContentWv.getSettings();
+        settings.setUseWideViewPort(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setLoadWithOverviewMode(true);//设置WebView 支持加载更多格式页面
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//WebView加载页面优先使用缓存加载
         String url = pre_Url + key + "=" + id + "&sid=" + HttpServiceUtil.SID;

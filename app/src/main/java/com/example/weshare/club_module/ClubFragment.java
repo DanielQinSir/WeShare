@@ -141,7 +141,7 @@ public class ClubFragment extends Fragment
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup)
+        public View getView(final int i, View view, ViewGroup viewGroup)
         {
             View itemView = view;
             ViewHolder holder = null;
