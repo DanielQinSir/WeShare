@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -41,9 +42,12 @@ public class ClubFragment extends Fragment
     ImageView mClubFragmentBarMineIv;
     @BindView(R.id.club_fragment_listview_lv)
     ListView mClubFragmentListviewLv;
+    private Button mClubMyPostBtn;
+    private Button mClubReplayMeBtn;
     private Context mContext;
     private ClubBean mData;
     private ClubListViewAdapter mClubListViewAdapter;
+    private PopupWindow mPopWindow;
 
     public static ClubFragment newInstance()
     {
@@ -69,12 +73,50 @@ public class ClubFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                // TODO: 2016/9/6
+                showPubMenu();
             }
         });
         mClubListViewAdapter = new ClubListViewAdapter();
         mClubFragmentListviewLv.setAdapter(mClubListViewAdapter);
         return view;
+    }
+
+    private View.OnClickListener mOnClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
+        {
+            Intent intent = new Intent(mContext, ForumActivity.class);
+            switch (view.getId())
+            {
+                case R.id.club_my_post_btn:
+                    intent.putExtra("tag", 1);
+                    break;
+                case R.id.club_replay_me_btn:
+                    intent.putExtra("tag", 2);
+                    break;
+            }
+            mPopWindow.dismiss();
+            startActivity(intent);
+        }
+    };
+
+    private void showPubMenu()
+    {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.club_popupmenu, null, false);
+        mClubMyPostBtn = (Button) view.findViewById(R.id.club_my_post_btn);
+        mClubReplayMeBtn = (Button) view.findViewById(R.id.club_replay_me_btn);
+        mClubMyPostBtn.setOnClickListener(mOnClickListener);
+        mClubReplayMeBtn.setOnClickListener(mOnClickListener);
+// Focusable 为True，PopupWindow的点击事件才会相应
+        mPopWindow = new PopupWindow(view, 150, 120, true);
+//// 必须在代码中设置一下背景色，点击外面不会隐藏此弹窗
+//        mPopWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+// Focusable 为False时，不执行则点击外面不会隐藏此弹窗
+        mPopWindow.setOutsideTouchable(true);
+
+// 显示 默认显示View的正下方，可以使用重载方法设置偏移量来调整位置
+        mPopWindow.showAsDropDown(mClubFragmentBarMineIv, 20, 5);
     }
 
     private void loadData()
@@ -167,7 +209,7 @@ public class ClubFragment extends Fragment
                     String id = mData.getModule().get((Integer) view.getTag()).getId();
                     goToDetailActivity(id);
                 }
-           });
+            });
             return itemView;
         }
 
@@ -180,7 +222,7 @@ public class ClubFragment extends Fragment
         startActivity(intent);
     }
 
-     class ViewHolder
+    class ViewHolder
     {
 
         @BindView(R.id.club_listview_item_head_iv)

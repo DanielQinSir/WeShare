@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="105dp"
+              android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#eaeaea"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        <ImageView
+            android:id="@+id/myshare_lv_item_icon_iv3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/customservice_address"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/myshare_lv_item_phone_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="政务区齐云路嘉和园南区21栋102"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/myshare_lv_item_icon_iv3"
+            android:layout_marginLeft="20dp"/>
+
+    </RelativeLayout>
+</LinearLayout>

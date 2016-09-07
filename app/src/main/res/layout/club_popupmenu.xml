@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="100dp"
+              android:layout_height="120dp"
+              android:background="@drawable/mine_bg"
+              android:orientation="vertical">
+
+    <Button
+        android:id="@+id/club_my_post_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/mypost"
+        android:drawablePadding="3dp"
+        android:text="我的帖子"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#d8d8d8"/>
+
+    <Button
+        android:id="@+id/club_replay_me_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/replytome"
+        android:drawablePadding="3dp"
+        android:text="回复我的"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"/>
+</LinearLayout>

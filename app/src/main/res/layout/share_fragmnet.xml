@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <ImageView
+            android:id="@+id/myshare_bar_settings_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="2dp"
+            android:src="@drawable/setbtn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的享享"
+            android:textColor="#88cc00"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/my_share_bg"
+        >
+
+        <TextView
+            android:id="@+id/myshare_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="您尚未登录"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/myshare_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myshare_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="#ff9900"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="登录/注册"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/myshare_listview_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="share"
-        android:textSize="30sp"
-        android:gravity="center"/>
-
+        android:divider="#efeff4"
+        android:dividerHeight="1dp"
+        android:listSelector="#fff"
+        />
 </LinearLayout>

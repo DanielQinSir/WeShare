@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="105dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:id="@+id/myshare_lv_item_allorder_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/allorder"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="全部订单"
+            android:textColor="#000"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/myshare_lv_item_uncompleted_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/unfinishedorder"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="未完成"
+            android:textColor="#000"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/myshare_lv_item_completed_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/completeorder"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="已完成"
+            android:textColor="#000"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/myshare_lv_item_afterservice_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/customservice"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="售后"
+            android:textColor="#000"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#eaeaea"/>
+</LinearLayout>

@@ -22,6 +22,8 @@
         <activity android:name=".welcome_module.WelcomePageThree"/>
         <activity android:name=".club_module.ClubDetailActivity">
         </activity>
+        <activity android:name=".club_module.ForumActivity">
+        </activity>
     </application>
 
 </manifest>
