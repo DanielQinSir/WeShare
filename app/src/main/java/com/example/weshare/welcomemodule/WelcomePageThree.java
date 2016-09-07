@@ -1,4 +1,4 @@
-package com.example.weshare.welcome_module;
+package com.example.weshare.welcomemodule;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

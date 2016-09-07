@@ -3,10 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="105dp"
               android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="#eaeaea"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp">

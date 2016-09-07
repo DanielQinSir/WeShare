@@ -1,4 +1,4 @@
-package com.example.weshare.club_module;
+package com.example.weshare.clubmodule;
 
 import android.content.Context;
 import android.os.Bundle;

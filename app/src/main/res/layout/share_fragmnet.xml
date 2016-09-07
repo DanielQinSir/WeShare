@@ -27,41 +27,6 @@
             android:textStyle="bold"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/my_share_bg"
-        >
-
-        <TextView
-            android:id="@+id/myshare_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="您尚未登录"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/myshare_login_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/myshare_tv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#ff9900"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="登录/注册"
-            android:textColor="#fff"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            />
-    </RelativeLayout>
-
     <ListView
         android:id="@+id/myshare_listview_lv"
         android:layout_width="match_parent"

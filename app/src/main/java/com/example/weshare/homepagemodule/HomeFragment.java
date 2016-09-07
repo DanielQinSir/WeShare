@@ -1,4 +1,4 @@
-package com.example.weshare.shoppingcart_module;
+package com.example.weshare.homepagemodule;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import com.example.weshare.R;
 /**
  * Created by Administrator on 2016/9/5.
  */
-public class ShoppingCartFragment extends Fragment{
+public class HomeFragment  extends Fragment{
     private Context mContext;
 
-    public static ShoppingCartFragment newInstance() {
-       return new ShoppingCartFragment();
+    public static HomeFragment newInstance() {
+       return new HomeFragment();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ShoppingCartFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.shoppingcart_fragmnet,container,false);
+        View view = inflater.inflate(R.layout.home_fragmnet,container,false);
         return view;
     }
 }

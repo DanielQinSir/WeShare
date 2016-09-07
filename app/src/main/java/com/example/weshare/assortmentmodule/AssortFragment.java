@@ -1,4 +1,4 @@
-package com.example.weshare.assortment_module;
+package com.example.weshare.assortmentmodule;
 
 import android.content.Context;
 import android.os.Bundle;

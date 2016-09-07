@@ -10,11 +10,11 @@ import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.weshare.assortment_module.AssortFragment;
-import com.example.weshare.club_module.ClubFragment;
-import com.example.weshare.homepage_module.HomeFragment;
-import com.example.weshare.myshare_module.ShareFragment;
-import com.example.weshare.shoppingcart_module.ShoppingCartFragment;
+import com.example.weshare.assortmentmodule.AssortFragment;
+import com.example.weshare.clubmodule.ClubFragment;
+import com.example.weshare.homepagemodule.HomeFragment;
+import com.example.weshare.mysharemodule.ShareFragment;
+import com.example.weshare.shoppingcartmodule.ShoppingCartFragment;
 import com.example.weshare.utils.UpdateUtil;
 
 import java.util.ArrayList;

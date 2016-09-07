@@ -1,4 +1,4 @@
-package com.example.weshare.welcome_module;
+package com.example.weshare.welcomemodule;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
