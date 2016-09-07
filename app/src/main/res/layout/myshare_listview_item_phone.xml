@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"/>
         <TextView
-            android:id="@+id/myshare_lv_item_phone_iv"
+            android:id="@+id/myshare_lv_item_phone_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0551-62292025"
@@ -30,11 +30,12 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"/>
         <TextView
+            android:id="@+id/myshare_lv_item_worktime_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="工作时间9点-20点,节假日9点-18点"
-            android:layout_below="@id/myshare_lv_item_phone_iv"
-            android:layout_alignLeft="@id/myshare_lv_item_phone_iv"
+            android:layout_below="@id/myshare_lv_item_phone_tv"
+            android:layout_alignLeft="@id/myshare_lv_item_phone_tv"
             />
     </RelativeLayout>
 </LinearLayout>

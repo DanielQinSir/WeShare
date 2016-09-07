@@ -80,6 +80,7 @@ public class ViewPagerADFragment extends Fragment
         View view = inflater.inflate(R.layout.viewpager_ad_fragment, null, false);
         viewpager = (ViewPager) view.findViewById(R.id.viewpager_ad_vp);
         mLinearLayout = (LinearLayout) view.findViewById(R.id.point_ll);
+        addPointer();
         mMyadapter = new Myadater();
         viewpager.setAdapter(mMyadapter);
         viewpager.setOffscreenPageLimit(mDatas.size());
@@ -127,6 +128,17 @@ public class ViewPagerADFragment extends Fragment
         });
         handler.sendEmptyMessageDelayed(1, 3333);
         return view;
+    }
+
+    private void addPointer()
+    {
+        for (int i = 0; i < mDatas.size(); i++)
+        {
+            ImageView imageView = new ImageView(mContext);
+            imageView.setImageResource(R.drawable.point_selector);
+            imageView.setPadding(10,0,10,0);
+            mLinearLayout.addView(imageView);
+        }
     }
 
     private void setItemSelected(int position)

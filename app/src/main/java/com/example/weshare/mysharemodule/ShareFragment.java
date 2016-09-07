@@ -1,6 +1,8 @@
 package com.example.weshare.mysharemodule;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -48,12 +50,39 @@ public class ShareFragment extends Fragment
                     Toast.makeText(mContext, "设置", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.myshare_login_btn:
+                    Toast.makeText(mContext, "登录", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     int position = (int) view.getTag();
                     switch (position)
                     {
                         case 0:
+                            Toast.makeText(mContext, "我的订单", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 2:
+                            Toast.makeText(mContext, "我的账户", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 3:
+                            Toast.makeText(mContext, "我的优惠券", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 4:
+                            Toast.makeText(mContext, "积分记录", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 5:
+                            Toast.makeText(mContext, "我的收藏", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 6:
+                            Toast.makeText(mContext, "帮助与反馈", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 7:
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_CALL);
+                            TextView phoneView = (TextView) view.findViewById(R.id.myshare_lv_item_phone_tv);
+                            intent.setData(Uri.parse("tel:" + phoneView.getText().toString().trim()));
+                            startActivity(intent);
+                            break;
+                        case 9:
+                            goToActivity(AboutXXActivity.class);
                             break;
                     }
             }
@@ -105,8 +134,14 @@ public class ShareFragment extends Fragment
         datas.add(new Item("关于享享", R.drawable.wdxx));
     }
 
+    private void goToActivity(Class clazz)
+    {
+        startActivity(new Intent(mContext,clazz));
+    }
+
     private class Item
     {
+
         private String title;
         private int id;
 
@@ -149,7 +184,7 @@ public class ShareFragment extends Fragment
             switch (i)
             {
                 case 1:
-                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_order,viewGroup,false);
+                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_order, viewGroup, false);
                     TextView allOrderTv = (TextView) itemView.findViewById(R.id.myshare_lv_item_allorder_tv);
                     TextView unCompletedOrderTv = (TextView) itemView.findViewById(R.id.myshare_lv_item_uncompleted_tv);
                     TextView completedOrderTv = (TextView) itemView.findViewById(R.id.myshare_lv_item_completed_tv);
@@ -160,15 +195,15 @@ public class ShareFragment extends Fragment
                     afterServiceOrderTv.setOnClickListener(mlistener);
                     break;
                 case 7:
-                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_phone,viewGroup,false);
+                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_phone, viewGroup, false);
+                    itemView.setTag(i);
                     itemView.setOnClickListener(mlistener);
                     break;
                 case 8:
-                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_adress,viewGroup,false);
-                    itemView.setOnClickListener(mlistener);
+                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_adress, viewGroup, false);
                     break;
                 default:
-                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_normal,viewGroup,false);
+                    itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_normal, viewGroup, false);
                     ImageView iconIv = (ImageView) itemView.findViewById(R.id.myshare_lv_item_icon_iv);
                     TextView titleTv = (TextView) itemView.findViewById(R.id.myshare_lv_item_title_tv);
                     Item item = datas.get(i);

@@ -3,6 +3,7 @@
           package="com.example.weshare">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +24,10 @@
         <activity android:name=".clubmodule.ClubDetailActivity">
         </activity>
         <activity android:name=".clubmodule.ForumActivity">
+        </activity>
+        <activity android:name=".mysharemodule.AboutXXActivity">
+        </activity>
+        <activity android:name=".mysharemodule.SettingsActivity">
         </activity>
     </application>
 
