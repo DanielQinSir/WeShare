@@ -42,7 +42,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="1 输入手机号码"
-            android:textColor="#ff9900"
+            android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"/>
 
@@ -55,7 +55,7 @@
             android:drawableLeft="@drawable/btn_next"
             android:drawablePadding="5dp"
             android:text="2 输入验证码"
-            android:textColor="#ff9900"
+            android:textColor="#000"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -69,7 +69,7 @@
             android:drawableLeft="@drawable/btn_next"
             android:drawablePadding="5dp"
             android:text="3 设置密码"
-            android:textColor="#ff9900"
+            android:textColor="#000"
             android:textSize="18sp"
             android:textStyle="bold"/>
     </RelativeLayout>

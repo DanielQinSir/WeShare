@@ -54,4 +54,23 @@ public interface HttpService
     @FormUrlEncoded
     @POST("mobile/apkdesc.php")//关于享享
     Call<AboutXXBean> aboutXX(@Field("submit")String submit, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/reg_step1.php")//注册第一步,请求验证码
+    Call<ResponseBody> getCheckWord(@Field("sid")String sid,@Field("mobile")String mobile);
+
+    @FormUrlEncoded
+    @POST("mobile/control/sms/admin_sms.php")//重新发送验证码
+    Call<ResponseBody> getCheckWordAgain(@Field("mobile")String mobile,@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/reg_step2.php")//校验验证码
+    Call<ResponseBody> verifyCheckword(@Field("sid")String sid,@Field("checkword")String checkword);
+
+    @FormUrlEncoded
+    @POST("mobile/reg_step3.php")//设置密码
+    Call<ResponseBody> setPWD(@Field("password")String password,@Field("invitecode")String invitecode,@Field("sid")String sid);
+
+    @POST("mobile/control/member/myaccount.php?new=1")//注册成功后自动登录
+    Call<ResponseBody> newAccount(@Query("sid")String sid);
 }
