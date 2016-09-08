@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".mysharemodule.SettingsActivity">
         </activity>
+        <activity android:name=".settingmodule.MessagePushActivity">
+        </activity>
+        <activity android:name=".shoppingcartmodule.RegistActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@
         android:layout_marginRight="20dp"
         android:src="@drawable/btn_next"/>
     <TextView
+        android:id="@+id/setting_lv_item_switch_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"

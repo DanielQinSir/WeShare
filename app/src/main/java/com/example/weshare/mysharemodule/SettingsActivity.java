@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weshare.R;
+import com.example.weshare.settingmodule.MessagePushActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class SettingsActivity extends AppCompatActivity
 
     @BindView(R.id.setting_bar_back_iv)
     ImageView mSettingBarBackIv;
+    @BindView(R.id.setting_lv)
+    ListView mSettingLv;
     private List<Item> datas;
 
     private View.OnClickListener mlistener = new View.OnClickListener()
@@ -59,12 +63,13 @@ public class SettingsActivity extends AppCompatActivity
                             Toast.makeText(SettingsActivity.this, "安置框服务", Toast.LENGTH_SHORT).show();
                             break;
                         case 6:
+                            goToActivity(MessagePushActivity.class);
                             break;
                     }
             }
         }
     };
-    private SettingListviewAdapter mMyshareListviewAdapter;
+    private SettingListviewAdapter mSettingListviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +84,8 @@ public class SettingsActivity extends AppCompatActivity
     private void initView()
     {
         mSettingBarBackIv.setOnClickListener(mlistener);
+        mSettingListviewAdapter = new SettingListviewAdapter();
+        mSettingLv.setAdapter(mSettingListviewAdapter);
     }
 
     private void initData()
@@ -89,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity
         datas.add(new Item("更换已绑定的手机号", R.drawable.update_phonenumber));
         datas.add(new Item("登录密码", R.drawable.update_login_psd));
         datas.add(new Item("享享币支付密码", R.drawable.update_pay_psd));
-        datas.add(new Item("安智框服务", R.drawable.user_basket));
+        datas.add(new Item("安置框服务", R.drawable.user_basket));
         datas.add(new Item("信息推送", R.drawable.message));
     }
 
@@ -151,6 +158,11 @@ public class SettingsActivity extends AppCompatActivity
             titleTv.setText(item.title);
             itemView.setTag(i);
             itemView.setOnClickListener(mlistener);
+            if (i == 6)
+            {
+                TextView switchView = (TextView) itemView.findViewById(R.id.setting_lv_item_switch_tv);
+                switchView.setText(MessagePushActivity.acccptedPush ? "已开启" : "已关闭");
+            }
             return itemView;
         }
     }
