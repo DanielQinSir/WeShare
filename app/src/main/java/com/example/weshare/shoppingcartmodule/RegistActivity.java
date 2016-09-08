@@ -282,7 +282,7 @@ public class RegistActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initView();
     }

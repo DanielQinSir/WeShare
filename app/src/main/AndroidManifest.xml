@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/aboutxxiang"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".welcomemodule.WelcomePageTwo"/>
-        <activity android:name=".welcomemodule.WelcomePageThree"/>
-        <activity android:name=".clubmodule.ClubDetailActivity">
-        </activity>
-        <activity android:name=".clubmodule.ForumActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".welcomemodule.WelcomePageTwo" />
+        <activity android:name=".welcomemodule.WelcomePageThree" />
+        <activity android:name=".homepagemodule.HomeListDetail"/>
+        <activity android:name=".clubmodule.ClubDetailActivity"></activity>
+        <activity android:name=".clubmodule.ForumActivity"></activity>
+        <activity android:name=".homepagemodule.HomeListDetailTwo"></activity>
         <activity android:name=".mysharemodule.AboutXXActivity">
         </activity>
         <activity android:name=".mysharemodule.SettingsActivity">
