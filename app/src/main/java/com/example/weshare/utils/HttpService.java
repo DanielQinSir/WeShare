@@ -2,6 +2,11 @@ package com.example.weshare.utils;
 
 import com.example.weshare.databean.AboutXXBean;
 import com.example.weshare.databean.ClubBean;
+import com.example.weshare.databean.HomeListBean;
+import com.example.weshare.databean.HomeListDetailBean;
+import com.example.weshare.databean.HomeRecyclerViewBean;
+import com.example.weshare.databean.HomeRecyclerViewLogoBean;
+import com.example.weshare.databean.HomeViewPagerBean;
 import com.example.weshare.databean.UpdateBean;
 
 import okhttp3.ResponseBody;
@@ -50,6 +55,21 @@ public interface HttpService
 
     @POST("mobile/control/forum/index_27.php")//获取俱乐部模块信息
     Call<ClubBean> getClubInfo(@Query("sid")String sid);
+    @FormUrlEncoded
+    @POST("/mobile/control/index/getProInfo.php")
+    Call<HomeRecyclerViewBean> getRecyclerviewInfo(@Field("submit") String value, @Field("sid") String sid);//获取中间三个横条前2个的数据
+    @FormUrlEncoded
+    @POST("/mobile/control/index/special_area_all.php")
+    Call<HomeListBean> getListInfo(@Field("submit") String value, @Field("sid") String sid);//获取listview的数据
+    @FormUrlEncoded
+    @POST("/mobile/control/index/special_area.php")
+    Call<HomeRecyclerViewLogoBean> getLogoInfo(@Field("submit") String value, @Field("sid") String sid);//获取中间三个横条第3个的数据
+    @FormUrlEncoded
+    @POST("/mobile/control/index/advs.php")
+    Call<HomeViewPagerBean> getViewpagerInfo(@Field("sid") String sid);//获取上方滚动Viewpager的数据
+    @FormUrlEncoded
+    @POST("/mobile/control/index/new_special_area_info.php")
+    Call<HomeListDetailBean> getListDetailInfo(@Field("id") String id,@Field("sid") String sid);//获取listview的数据
 
     @FormUrlEncoded
     @POST("mobile/apkdesc.php")//关于享享
