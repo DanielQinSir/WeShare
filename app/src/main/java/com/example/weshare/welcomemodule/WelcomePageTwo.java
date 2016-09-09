@@ -2,17 +2,16 @@ package com.example.weshare.welcomemodule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.weshare.MainActivity;
 import com.example.weshare.R;
 
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class WelcomePageTwo extends AppCompatActivity {
                     welcome_txt.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(mContext, MainActivity.class));
+                            startActivity(new Intent(mContext, LocationActivity.class));
                             finish();
                         }
                     });

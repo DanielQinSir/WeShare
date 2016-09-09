@@ -29,13 +29,11 @@ import com.example.weshare.databean.HomeRecyclerViewLogoBean;
 import com.example.weshare.databean.HomeViewPagerBean;
 import com.example.weshare.utils.HttpServiceUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -151,8 +149,10 @@ public class HomeFragment extends Fragment {
         title_list.add("摇优惠");
         title_list.add("邀请好友");
         title_list.add("享享之旅");
-
-        gridadapter.notifyDataSetChanged();
+        if (gridadapter != null)
+        {
+            gridadapter.notifyDataSetChanged();
+        }
 
         HttpServiceUtil.init().getRecyclerviewInfo("promote278", HttpServiceUtil.SID).enqueue(new Callback<HomeRecyclerViewBean>() {
             @Override

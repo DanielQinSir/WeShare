@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="#88cc00"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/shoppingcart_unlogin_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="您尚未登录"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"/>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_below="@id/shoppingcart_unlogin_tv"
+    android:layout_centerHorizontal="true">
+    <Button
+        android:id="@+id/shoppingcart_unlogin_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:textSize="25sp"
+        android:textColor="#fff"
+        android:layout_margin="10dp"
+        android:background="#ff9900"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/shoppingcart_unlogin_goother_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去逛逛"
+        android:textSize="25sp"
+        android:textColor="#fff"
+        android:background="#ff9900"
+        android:layout_margin="10dp"
+        android:padding="10dp"/>
+</LinearLayout>
+</RelativeLayout>

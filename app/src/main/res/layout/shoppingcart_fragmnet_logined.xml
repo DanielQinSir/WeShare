@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/shoppingcart_logined_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="#88cc00"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/shoppingcart_logined_edit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="编辑"
+            android:textColor="#88cc00"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/shoppingcart_logined_cart_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/shoppingcart_logined_bar"
+        />
+
+    <RelativeLayout
+        android:id="@+id/shoppingcart_logined_emptyview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="#88cc00"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/shoppingcart_logined_emptyview_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/shopping_cart_empty_cart_icon"/>
+
+        <TextView
+            android:id="@+id/shoppingcart_logined_emptyview_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shoppingcart_logined_emptyview_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="还没有商品哦,赶快添加一些吧~"
+            />
+
+        <Button
+            android:id="@+id/shoppingcart_logined_goother_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shoppingcart_logined_emptyview_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:background="#ff9900"
+            android:padding="10dp"
+            android:text="去逛逛"
+            android:textColor="#fff"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -10,33 +10,37 @@ import android.os.Bundle;
 import com.example.weshare.MainActivity;
 import com.example.weshare.R;
 
-public class WelcomePageOne extends AppCompatActivity {
+public class WelcomePageOne extends AppCompatActivity
+{
+
     private SharedPreferences msp;
-    private Handler mhandler =new Handler(){
+    private Handler mhandler = new Handler()
+    {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(Message msg)
+        {
             super.handleMessage(msg);
-            String flag = msp.getString("flag","");
-            if(flag.equals("")){
-                SharedPreferences.Editor editor = msp.edit();
-                editor.putString("flag","123");
-                editor.commit();
-                startActivity(new Intent(WelcomePageOne.this,WelcomePageTwo.class));
-                finish();
-            }else{
-                startActivity(new Intent(WelcomePageOne.this,MainActivity.class));
+            String flag = msp.getString("zoneID", "");
+            if (flag.equals(""))
+            {
+                startActivity(new Intent(WelcomePageOne.this, WelcomePageTwo.class));
                 finish();
             }
-
+            else
+            {
+                startActivity(new Intent(WelcomePageOne.this, MainActivity.class));
+                finish();
+            }
 
         }
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page_one);
-        msp=getSharedPreferences("welcome",MODE_PRIVATE);
-        mhandler.sendEmptyMessageDelayed(1,2000);
+        msp = getSharedPreferences("location", MODE_PRIVATE);
+        mhandler.sendEmptyMessageDelayed(1, 2000);
     }
 }

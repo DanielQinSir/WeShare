@@ -161,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity
             if (i == 6)
             {
                 TextView switchView = (TextView) itemView.findViewById(R.id.setting_lv_item_switch_tv);
-                switchView.setText(MessagePushActivity.acccptedPush ? "已开启" : "已关闭");
+                switchView.setText(MessagePushActivity.acccptedPush == 1 ? "已开启" : "已关闭");
             }
             return itemView;
         }

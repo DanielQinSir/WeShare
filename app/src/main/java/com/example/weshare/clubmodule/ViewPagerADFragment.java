@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,7 +85,6 @@ public class ViewPagerADFragment extends Fragment
         mMyadapter = new Myadater();
         viewpager.setAdapter(mMyadapter);
         viewpager.setOffscreenPageLimit(mDatas.size());
-        setItemSelected(0);
 
         viewpager.setOnTouchListener(new View.OnTouchListener()
         {
@@ -171,17 +171,21 @@ public class ViewPagerADFragment extends Fragment
         {
             ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(mContext).load(mDatas.get(position).getPicurl()).into(imageView);
-            imageView.setTag(position);
-            imageView.setOnClickListener(new View.OnClickListener()
+            ADbean aDbean = mDatas.get(position);
+            Glide.with(mContext).load(aDbean.getPicurl()).into(imageView);
+            if (!TextUtils.isEmpty(aDbean.getPicurl()))
             {
-                @Override
-                public void onClick(View view)
+                imageView.setTag(position);
+                imageView.setOnClickListener(new View.OnClickListener()
                 {
-                    String id = mDatas.get((Integer) view.getTag()).getId();
-                    goToDetailActivity(id);
-                }
-            });
+                    @Override
+                    public void onClick(View view)
+                    {
+                        String id = mDatas.get((Integer) view.getTag()).getId();
+                        goToDetailActivity(id);
+                    }
+                });
+            }
             container.addView(imageView);
             return imageView;
         }

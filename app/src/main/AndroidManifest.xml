@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".welcomemodule.WelcomePageTwo" />
-        <activity android:name=".welcomemodule.WelcomePageThree" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".welcomemodule.WelcomePageTwo"/>
+        <activity android:name=".welcomemodule.WelcomePageThree"/>
         <activity android:name=".homepagemodule.HomeListDetail"/>
-        <activity android:name=".clubmodule.ClubDetailActivity"></activity>
-        <activity android:name=".clubmodule.ForumActivity"></activity>
-        <activity android:name=".homepagemodule.HomeListDetailTwo"></activity>
+        <activity android:name=".clubmodule.ClubDetailActivity"/>
+        <activity android:name=".clubmodule.ForumActivity"/>
+        <activity android:name=".homepagemodule.HomeListDetailTwo"/>
         <activity android:name=".mysharemodule.AboutXXActivity">
         </activity>
         <activity android:name=".mysharemodule.SettingsActivity">
@@ -32,6 +32,11 @@
         <activity android:name=".settingmodule.MessagePushActivity">
         </activity>
         <activity android:name=".shoppingcartmodule.RegistActivity">
+        </activity>
+        <activity android:name=".welcomemodule.SelectAdressActivity">
+        </activity>
+        <activity android:name=".welcomemodule.LocationActivity"/>
+        <activity android:name=".shoppingcartmodule.FindPWDActivity">
         </activity>
     </application>
 

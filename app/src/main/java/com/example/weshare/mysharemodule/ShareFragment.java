@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weshare.R;
-import com.example.weshare.shoppingcartmodule.RegistActivity;
+import com.example.weshare.shoppingcartmodule.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,7 @@ public class ShareFragment extends Fragment
                     goToActivity(SettingsActivity.class);
                     break;
                 case R.id.myshare_login_btn:
-                    Toast.makeText(mContext, "登录", Toast.LENGTH_SHORT).show();
-                    goToActivity(RegistActivity.class);
+                    goToActivity(LoginActivity.class);
                     break;
                 default:
                     int position = (int) view.getTag();

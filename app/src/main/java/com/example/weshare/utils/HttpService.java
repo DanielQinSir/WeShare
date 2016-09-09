@@ -7,7 +7,9 @@ import com.example.weshare.databean.HomeListDetailBean;
 import com.example.weshare.databean.HomeRecyclerViewBean;
 import com.example.weshare.databean.HomeRecyclerViewLogoBean;
 import com.example.weshare.databean.HomeViewPagerBean;
+import com.example.weshare.databean.LocationBean;
 import com.example.weshare.databean.UpdateBean;
+import com.example.weshare.databean.UserBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -93,4 +95,12 @@ public interface HttpService
 
     @POST("mobile/control/member/myaccount.php?new=1")//注册成功后自动登录
     Call<ResponseBody> newAccount(@Query("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/location.php?show=get")//获取地址信息列表
+    Call<LocationBean> getAdressesData(@Field("provinceid")String provinceid, @Field("sid")String sid, @Field("cityid")String cityid);
+
+    @FormUrlEncoded
+    @POST("mobile/login.php")//登录
+    Call<UserBean> login(@Field("username")String username, @Field("password")String password, @Field("sid")String sid);
 }

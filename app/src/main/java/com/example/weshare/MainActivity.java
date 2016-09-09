@@ -1,12 +1,17 @@
 package com.example.weshare;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -20,13 +25,14 @@ import com.example.weshare.utils.UpdateUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ShoppingCartFragment.MyCallBack{
 
     private RadioGroup my_radiogroup;
     private ViewPager my_viewpager;
     private MyPagerAdapter adapter;
     private List<Fragment> fragments =new ArrayList<>();
     private long exitTime;
+    private int acceptMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
         UpdateUtil.checkForUpdateBean(this);
         initDatas();
         initView();
+        checkPushStatue();
     }
 
+    private void checkPushStatue()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
+        acceptMessage = sharedPreferences.getInt("accept", 0);
+        if (acceptMessage == 0)
+        {
+            showPushMessageDialog(sharedPreferences);
+        }
+    }
 
     private void initView() {
         my_radiogroup = (RadioGroup) findViewById(R.id.main_RG);
@@ -105,16 +121,56 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        my_viewpager.setOffscreenPageLimit(5);
+//        my_viewpager.setOffscreenPageLimit(5);
     }
 
     private void initDatas() {
         fragments.add(HomeFragment.newInstance());
         fragments.add(AssortFragment.newInstance());
         fragments.add(ClubFragment.newInstance());
-        fragments.add(ShoppingCartFragment.newInstance());
+        ShoppingCartFragment shoppingCartFragment = ShoppingCartFragment.newInstance();
+        shoppingCartFragment.setListener(this);
+        fragments.add(shoppingCartFragment);
         fragments.add(ShareFragment.newInstance());
 
+    }
+
+    private void showPushMessageDialog(final SharedPreferences sharedPreferences)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("是否接受推送消息").setMessage("开启后能在第一时间收到最新的商品信息哦!");
+        CheckBox checkBox = new CheckBox(this);
+        checkBox.setText("接受推送");
+        checkBox.setPadding(50,0,0,0);
+        checkBox.setTextSize(22);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            {
+                if (b)
+                {
+                    acceptMessage = 1;
+                }
+                else
+                {
+                    acceptMessage = 2;
+                }
+            }
+        });
+        builder.setView(checkBox);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                dialogInterface.dismiss();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("accept", acceptMessage);
+                editor.commit();
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -137,7 +193,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-   private class MyPagerAdapter extends FragmentPagerAdapter{
+    @Override
+    public void goToFirstFragment()
+    {
+        my_viewpager.setCurrentItem(0);
+    }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter{
 
         public MyPagerAdapter(FragmentManager fm){
             super(fm);

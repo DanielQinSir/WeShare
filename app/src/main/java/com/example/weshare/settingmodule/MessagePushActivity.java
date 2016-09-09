@@ -27,7 +27,7 @@ public class MessagePushActivity extends AppCompatActivity
     Switch mMessagePushSwitchSw;
     @BindView(R.id.message_push_bar_back_iv)
     ImageView mMessagePushBarBackIv;
-    public static boolean acccptedPush;
+    public static int acccptedPush;
     private SharedPreferences mSpf;
 
     @Override
@@ -38,7 +38,7 @@ public class MessagePushActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         mSpf = getSharedPreferences("push", MODE_PRIVATE);
-        acccptedPush = mSpf.getBoolean("accept", false);
+        acccptedPush = mSpf.getInt("accept", 0);
         mMessagePushSwitchSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -48,17 +48,18 @@ public class MessagePushActivity extends AppCompatActivity
                 {
                     Toast.makeText(MessagePushActivity.this, "接受推送消息!", Toast.LENGTH_SHORT).show();
                     mMessagePushContentTv.setText("已开启接受推送消息");
+                    acccptedPush = 1;
                 }
                 else
                 {
                     Toast.makeText(MessagePushActivity.this, "不接受推送消息!", Toast.LENGTH_SHORT).show();
                     mMessagePushContentTv.setText("已关闭接受推送消息");
+                    acccptedPush = 2;
                 }
-                acccptedPush = b;
             }
         });
         mMessagePushSwitchSw.setButtonDrawable(new ColorDrawable(Color.YELLOW));
-        if (acccptedPush)
+        if (acccptedPush == 1)
         {
             mMessagePushSwitchSw.setChecked(true);
         }
@@ -75,7 +76,7 @@ public class MessagePushActivity extends AppCompatActivity
     private void saveMessagePushStatue()
     {
         SharedPreferences.Editor editor = mSpf.edit();
-        editor.putBoolean("accept", acccptedPush);
+        editor.putInt("accept", acccptedPush);
         editor.commit();
     }
 
