@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <RatingBar
+            android:id="@+id/comment_listview_item2_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+           />
+        <TextView
+            android:id="@+id/comment_listview_item2_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/comment_listview_item2_ratingbar"
+            android:layout_below="@+id/comment_listview_item2_ratingbar"
+            android:text="dassdaf31"
+            android:textColor="#D5D5D5"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/comment_listview_item2_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/comment_listview_item2_name_tv"
+            android:layout_alignParentRight="true"
+            android:text="2016/09/07 10:55"
+            android:textColor="#D5D5D5"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#D5D5D5"/>
+
+</LinearLayout>

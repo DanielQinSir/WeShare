@@ -77,8 +77,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragmnet, container, false);
         ButterKnife.bind(this, view);
-        loadDatas();
         initHeaderView();
+        loadDatas();
         notifyadapter();
         return view;
     }
@@ -108,24 +108,26 @@ public class HomeFragment extends Fragment {
         home_recyclerview = (RecyclerView) view2.findViewById(R.id.home_recyclerview);
         gridLayoutManager = new GridLayoutManager(mContext,3);
         home_recyclerview.setLayoutManager(gridLayoutManager);
-        initAd();
         home_Listview.addHeaderView(view2);
-
+        initAd();
         initAdapter();
 
     }
     private void initAd()
     {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        List<ADbean> ads = new ArrayList<>();
-        for (HomeViewPagerBean.AdvsBean ad : viewpager_bean)
-        {
-            String pic_url = ad.getPic();
-            String areaid = ad.getSpecial_areaid();
-            ads.add(new ADbean(pic_url, areaid));
+        if(viewpager_bean!=null){
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            List<ADbean> ads = new ArrayList<>();
+            for (HomeViewPagerBean.AdvsBean ad : viewpager_bean)
+            {
+                String pic_url = ad.getPic();
+                String areaid = ad.getSpecial_areaid();
+                ads.add(new ADbean(pic_url, areaid));
+            }
+            fragmentTransaction.replace(R.id.home_framelayout, ViewPagerADFragment.newInstance(ads));
+            fragmentTransaction.commit();
         }
-        fragmentTransaction.replace(R.id.home_framelayout, ViewPagerADFragment.newInstance(ads));
-        fragmentTransaction.commit();
+
     }
 
     private void loadDatas() {
@@ -223,21 +225,6 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG, "onFailure: 333333");
             }
         });
-       /* HttpServiceUtil.init().getAds(HttpServiceUtil.SID).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.(TAG, "onResponse: "+response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });*/
     }
 
 

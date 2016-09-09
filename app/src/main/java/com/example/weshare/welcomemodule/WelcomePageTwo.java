@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.weshare.MainActivity;
 import com.example.weshare.R;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class WelcomePageTwo extends AppCompatActivity {
                     welcome_txt.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(mContext, LocationActivity.class));
+                            startActivity(new Intent(mContext,LocationActivity.class));
                             finish();
                         }
                     });

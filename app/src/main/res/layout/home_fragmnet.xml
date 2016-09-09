@@ -24,7 +24,7 @@
             android:layout_toRightOf="@id/home_share_iv"
             android:layout_marginLeft="5dp"
             android:paddingLeft="5dp"
-            android:background="@drawable/round_shape"
+            android:background="@drawable/gray_round_shape"
             android:textColor="#999999"
             />
    </RelativeLayout>

@@ -9,29 +9,55 @@ import android.os.Bundle;
 
 import com.example.weshare.MainActivity;
 import com.example.weshare.R;
+import com.example.weshare.clubmodule.StartADBean;
+import com.example.weshare.utils.HttpServiceUtil;
 
-public class WelcomePageOne extends AppCompatActivity
-{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class WelcomePageOne extends AppCompatActivity {
     private SharedPreferences msp;
-    private Handler mhandler = new Handler()
-    {
+    private int succeed;
+    private  String flag;
+    private Handler mhandler =new Handler(){
         @Override
-        public void handleMessage(Message msg)
-        {
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            String flag = msp.getString("zoneID", "");
-            if (flag.equals(""))
-            {
-                startActivity(new Intent(WelcomePageOne.this, WelcomePageTwo.class));
-                finish();
-            }
-            else
-            {
-                startActivity(new Intent(WelcomePageOne.this, MainActivity.class));
-                finish();
-            }
 
+            switch (msg.what) {
+                case 1:
+                    if (flag.equals("")) {
+                       /* SharedPreferences.Editor editor = msp.edit();
+                        editor.putString("flag","123");
+                        editor.commit();*/
+                        startActivity(new Intent(WelcomePageOne.this, WelcomePageTwo.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(WelcomePageOne.this, WelcomePageThree.class));
+                        finish();
+                    }
+                    break;
+                case 2:
+                    if (flag.equals("")) {
+                        startActivity(new Intent(WelcomePageOne.this, WelcomePageTwo.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(WelcomePageOne.this, MainActivity.class));
+                        finish();
+                    }
+                    break;
+                    /*if(flag.equals("")){
+                        *//*SharedPreferences.Editor editor = msp.edit();
+                        editor.putString("flag","123");
+                        editor.commit();*//*
+                        startActivity(new Intent(WelcomePageOne.this,WelcomePageTwo.class));
+                        finish();
+                    }else{
+                        startActivity(new Intent(WelcomePageOne.this,MainActivity.class));
+                        finish();
+                    }*/
+            }
         }
     };
 
@@ -41,6 +67,32 @@ public class WelcomePageOne extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page_one);
         msp = getSharedPreferences("location", MODE_PRIVATE);
-        mhandler.sendEmptyMessageDelayed(1, 2000);
+        //  msp=getSharedPreferences("welcome",MODE_PRIVATE);
+        getDatas();
+         flag = msp.getString("zoneID", "");
+
+       // flag = msp.getString("flag","");
+
+    }
+
+    private void getDatas() {
+        HttpServiceUtil.init().getSatrtADInfo(HttpServiceUtil.SID).enqueue(new Callback<StartADBean>() {
+            @Override
+            public void onResponse(Call<StartADBean> call, Response<StartADBean> response) {
+               succeed = response.body().getSucceed();
+                if(succeed==1){
+                    mhandler.sendEmptyMessageDelayed(1,2000);
+                }
+                if(succeed==0){
+                    mhandler.sendEmptyMessageDelayed(2,2000);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StartADBean> call, Throwable t) {
+                startActivity(new Intent(WelcomePageOne.this,MainActivity.class));
+            }
+        });
+       // mhandler.sendEmptyMessageDelayed(1, 2000);
     }
 }

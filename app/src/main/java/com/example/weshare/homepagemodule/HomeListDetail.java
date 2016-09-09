@@ -158,6 +158,7 @@ public class HomeListDetail extends AppCompatActivity {
                 title_tv = (TextView) view.findViewById(R.id.home_list_detail_listview_item_title_tv);
                 item_iv = (ImageView) view.findViewById(R.id.home_list_detail_listview_item_iv);
                 content_tv = (TextView) view.findViewById(R.id.home_list_detail_listview_item_content_tv);
+                view.setOnClickListener(this);
             }
 
             @Override
