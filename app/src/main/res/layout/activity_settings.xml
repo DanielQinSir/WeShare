@@ -35,4 +35,16 @@
         android:id="@+id/setting_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/setting_exitlogin_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff9900"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:text="退出当前账号"/>
 </LinearLayout>

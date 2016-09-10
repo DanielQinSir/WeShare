@@ -8,13 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.settingmodule.MessagePushActivity;
+import com.example.weshare.shoppingcartmodule.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +32,9 @@ public class SettingsActivity extends AppCompatActivity
     ImageView mSettingBarBackIv;
     @BindView(R.id.setting_lv)
     ListView mSettingLv;
+    @BindView(R.id.setting_exitlogin_btn)
+    Button mSettingExitloginBtn;
     private List<Item> datas;
-
 
     private View.OnClickListener mlistener = new View.OnClickListener()
     {
@@ -47,25 +51,55 @@ public class SettingsActivity extends AppCompatActivity
                     switch (position)
                     {
                         case 0:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "修改用户名", Toast.LENGTH_SHORT).show();
                             break;
                         case 1:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "收货地址管理", Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "更换已绑定的手机号", Toast.LENGTH_SHORT).show();
                             break;
                         case 3:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "登陆密码", Toast.LENGTH_SHORT).show();
                             break;
                         case 4:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "享享币支付密码", Toast.LENGTH_SHORT).show();
                             break;
                         case 5:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(SettingsActivity.this, "安置框服务", Toast.LENGTH_SHORT).show();
                             break;
                         case 6:
-                            startActivityForResult(new Intent(SettingsActivity.this,MessagePushActivity.class),1);
+                            startActivityForResult(new Intent(SettingsActivity.this, MessagePushActivity.class), 1);
                             break;
                     }
             }
@@ -95,6 +129,17 @@ public class SettingsActivity extends AppCompatActivity
         mSettingBarBackIv.setOnClickListener(mlistener);
         mSettingListviewAdapter = new SettingListviewAdapter();
         mSettingLv.setAdapter(mSettingListviewAdapter);
+        mSettingExitloginBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                MyApplication.sUser = null;
+                Toast.makeText(SettingsActivity.this, "退出成功!", Toast.LENGTH_SHORT).show();
+                mSettingExitloginBtn.setVisibility(View.GONE);
+            }
+        });
+        mSettingExitloginBtn.setVisibility(MyApplication.sUser == null ? View.GONE : View.VISIBLE);
     }
 
     private void initData()
@@ -116,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK)
         {
-            acceptMessage = data.getIntExtra("push",0);
+            acceptMessage = data.getIntExtra("push", 0);
             mSettingListviewAdapter.notifyDataSetChanged();
         }
     }

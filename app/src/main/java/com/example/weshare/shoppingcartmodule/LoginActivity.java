@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.databean.UserBean;
 import com.example.weshare.utils.HttpServiceUtil;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity
     TextView mLoginGotoregistTv;
     @BindView(R.id.login_findpwd_tv)
     TextView mLoginFindpwdTv;
-    public static UserBean sUser;
+
     private View.OnClickListener mlistener = new View.OnClickListener()
     {
         @Override
@@ -58,15 +59,15 @@ public class LoginActivity extends AppCompatActivity
                         @Override
                         public void onResponse(Call<UserBean> call, Response<UserBean> response)
                         {
-                            sUser = response.body();
-                            if (sUser.getSucceed() == 0)
+                            MyApplication.sUser = response.body();
+                            if (MyApplication.sUser.getSucceed() == 0)
                             {
                                 Toast.makeText(LoginActivity.this, "登录失败,请检查账号和密码后再试!", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             else
                             {
-                                Toast.makeText(LoginActivity.this, "登陆成功!\n欢迎您" + sUser.getUsername() + "!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "登陆成功!\n欢迎您" + MyApplication.sUser.getUsername() + "!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent();
                                 intent.putExtra("ok", "ok");
                                 setResult(RESULT_OK, intent);

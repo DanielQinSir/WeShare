@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.weshare.BaseFragment;
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.databean.ProductBean;
 import com.example.weshare.utils.HttpServiceUtil;
@@ -142,8 +143,7 @@ public class ShoppingCartFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = null;
-        if (false)//未登录
-//        if (LoginActivity.sUser == null)//未登录
+        if (MyApplication.sUser == null)//未登录
         {
             view = inflater.inflate(R.layout.shoppingcart_fragmnet_unlogined, container, false);
             mShoppingcartUnloginLoginBtn = (Button) view.findViewById(R.id.shoppingcart_unlogin_login_btn);
@@ -252,7 +252,7 @@ public class ShoppingCartFragment extends BaseFragment
         if (data.getStringExtra("ok").equals("ok"))
         {
             //刷新视图
-            loadData();
+            mIMyCallBack.reFreshShoppingCartFragment();
         }
     }
 

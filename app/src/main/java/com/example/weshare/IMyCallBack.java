@@ -10,4 +10,6 @@ package com.example.weshare;
 public interface IMyCallBack
 {
     void goToMainActivityFirstFragment();
+
+    void reFreshShoppingCartFragment();
 }

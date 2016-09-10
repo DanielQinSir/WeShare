@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
+import com.example.weshare.databean.UserBean;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import java.io.IOException;
@@ -231,6 +233,7 @@ public class RegistActivity extends AppCompatActivity
                                         if (response.body().string().contains("会员"))
                                         {
                                             Toast.makeText(RegistActivity.this, "注册成功!", Toast.LENGTH_SHORT).show();
+                                            MyApplication.sUser = new UserBean();
                                             HttpServiceUtil.init().newAccount(HttpServiceUtil.SID).enqueue(new Callback<ResponseBody>()
                                             {
                                                 @Override

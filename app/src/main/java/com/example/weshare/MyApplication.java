@@ -2,6 +2,8 @@ package com.example.weshare;
 
 import android.app.Application;
 
+import com.example.weshare.databean.UserBean;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application
 {
+    public static UserBean sUser;
 
     @Override
     public void onCreate()

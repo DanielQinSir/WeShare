@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.shoppingcartmodule.LoginActivity;
 
@@ -71,21 +72,51 @@ public class ShareFragment extends Fragment
                     switch (position)
                     {
                         case 0:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "我的订单", Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "我的账户", Toast.LENGTH_SHORT).show();
                             break;
                         case 3:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "我的优惠券", Toast.LENGTH_SHORT).show();
                             break;
                         case 4:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "积分记录", Toast.LENGTH_SHORT).show();
                             break;
                         case 5:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "我的收藏", Toast.LENGTH_SHORT).show();
                             break;
                         case 6:
+                            if (MyApplication.sUser == null)
+                            {
+                                goToActivity(LoginActivity.class);
+                                return;
+                            }
                             Toast.makeText(mContext, "帮助与反馈", Toast.LENGTH_SHORT).show();
                             break;
                         case 7:
@@ -108,6 +139,7 @@ public class ShareFragment extends Fragment
     {
         return new ShareFragment();
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -149,13 +181,13 @@ public class ShareFragment extends Fragment
 
     private void goToActivity(Class clazz)
     {
-        startActivity(new Intent(mContext,clazz));
+        startActivity(new Intent(mContext, clazz));
     }
 
     private void goToMyOrderTab(int i)
     {
         Intent intent = new Intent(mContext, MyOrderActivity.class);
-        intent.putExtra("tab",i);
+        intent.putExtra("tab", i);
         startActivity(intent);
     }
 

@@ -255,6 +255,12 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         my_viewpager.setCurrentItem(0);
     }
 
+    @Override
+    public void reFreshShoppingCartFragment()
+    {
+        adapter.notifyDataSetChanged();
+    }
+
     private class MyPagerAdapter extends FragmentPagerAdapter
     {
 
@@ -278,6 +284,10 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         @Override
         public int getItemPosition(Object object)
         {
+            if (object instanceof ShoppingCartFragment)
+            {
+                return POSITION_NONE;
+            }
             return super.getItemPosition(object);
         }
     }
