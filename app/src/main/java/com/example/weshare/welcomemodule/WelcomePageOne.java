@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.example.weshare.MainActivity;
 import com.example.weshare.R;
-import com.example.weshare.clubmodule.StartADBean;
+import com.example.weshare.databean.StartADBean;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import retrofit2.Call;

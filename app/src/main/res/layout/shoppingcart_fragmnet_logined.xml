@@ -19,23 +19,67 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/shoppingcart_logined_edit_tv"
+        <CheckBox
+            android:id="@+id/shoppingcart_logined_edit_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
+            android:button="@null"
             android:text="编辑"
             android:textColor="#88cc00"
             android:textSize="20sp"
             />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/shoppingcart_logined_totalshow_rl"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eeeeee"
+        >
+
+        <CheckBox
+            android:id="@+id/shoppingcart_logined_totalchecked_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/shoppingcart_lv_item_check_selector"
+            android:button="@null"
+            android:checked="true"
+            />
+
+        <TextView
+            android:id="@+id/shoppingcart_logined_totalprice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/shoppingcart_logined_totalchecked_cb"
+            android:gravity="center_vertical"
+            android:text="全选: 100"/>
+
+        <Button
+            android:id="@+id/shoppingcart_logined_pay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="#ff9900"
+            android:padding="5dp"
+            android:text="结算"
+            android:textColor="#fff"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/shoppingcart_logined_cart_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/shoppingcart_logined_totalshow_rl"
         android:layout_below="@id/shoppingcart_logined_bar"
         />
 

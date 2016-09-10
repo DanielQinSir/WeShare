@@ -128,7 +128,7 @@ public class ClubFragment extends Fragment
             public void onResponse(Call<ClubBean> call, Response<ClubBean> response)
             {
                 mData = response.body();
-                if (mData != null)
+                if (mData.getSucceed() == 1)
                 {
                     initAd();
                     if (mClubListViewAdapter == null)

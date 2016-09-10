@@ -11,7 +11,20 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "c6ac3ac970b067ececf80934", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,4 +49,6 @@ dependencies {
     compile 'com.android.support:design:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
     compile files('lib/pinyin4j-2.5.0.jar')
+    compile files('lib/alipaySdk-20160825.jar')
+    compile 'cn.jiguang:jpush:2.1.9'  // 此处以SDK 2.1.9版本为例
 }

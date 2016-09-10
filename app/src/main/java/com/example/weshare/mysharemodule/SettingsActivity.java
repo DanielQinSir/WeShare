@@ -1,6 +1,7 @@
 package com.example.weshare.mysharemodule;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity
     @BindView(R.id.setting_lv)
     ListView mSettingLv;
     private List<Item> datas;
+
 
     private View.OnClickListener mlistener = new View.OnClickListener()
     {
@@ -63,13 +65,14 @@ public class SettingsActivity extends AppCompatActivity
                             Toast.makeText(SettingsActivity.this, "安置框服务", Toast.LENGTH_SHORT).show();
                             break;
                         case 6:
-                            goToActivity(MessagePushActivity.class);
+                            startActivityForResult(new Intent(SettingsActivity.this,MessagePushActivity.class),1);
                             break;
                     }
             }
         }
     };
     private SettingListviewAdapter mSettingListviewAdapter;
+    private int acceptMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +82,12 @@ public class SettingsActivity extends AppCompatActivity
         ButterKnife.bind(this);
         initData();
         initView();
+    }
+
+    private void checkPushStatue()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
+        acceptMessage = sharedPreferences.getInt("accept", 0);
     }
 
     private void initView()
@@ -98,6 +107,18 @@ public class SettingsActivity extends AppCompatActivity
         datas.add(new Item("享享币支付密码", R.drawable.update_pay_psd));
         datas.add(new Item("安置框服务", R.drawable.user_basket));
         datas.add(new Item("信息推送", R.drawable.message));
+        checkPushStatue();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK)
+        {
+            acceptMessage = data.getIntExtra("push",0);
+            mSettingListviewAdapter.notifyDataSetChanged();
+        }
     }
 
     private void goToActivity(Class clazz)
@@ -161,7 +182,7 @@ public class SettingsActivity extends AppCompatActivity
             if (i == 6)
             {
                 TextView switchView = (TextView) itemView.findViewById(R.id.setting_lv_item_switch_tv);
-                switchView.setText(MessagePushActivity.acccptedPush == 1 ? "已开启" : "已关闭");
+                switchView.setText(acceptMessage == 1 ? "已开启" : "已关闭");
             }
             return itemView;
         }

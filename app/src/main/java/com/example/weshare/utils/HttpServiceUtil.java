@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpServiceUtil
 {
     public static final String BASE_URL = "http://www.xxiang365.com/";
-    public static String SID = "gmqkoel51rdj5v541q6qs3tku6";
+    public static String SID = "tm5jljtckk3kijrvq2jqetosu2";
 
     private static HttpService mHttpService;
     public static HttpService init()

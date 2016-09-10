@@ -1,6 +1,6 @@
 package com.example.weshare.utils;
 
-import com.example.weshare.clubmodule.StartADBean;
+import com.example.weshare.databean.StartADBean;
 import com.example.weshare.databean.AboutXXBean;
 import com.example.weshare.databean.ClubBean;
 import com.example.weshare.databean.HomeListBean;
@@ -9,6 +9,7 @@ import com.example.weshare.databean.HomeRecyclerViewBean;
 import com.example.weshare.databean.HomeRecyclerViewLogoBean;
 import com.example.weshare.databean.HomeViewPagerBean;
 import com.example.weshare.databean.LocationBean;
+import com.example.weshare.databean.ProductBean;
 import com.example.weshare.databean.ProductIntroduceInfoBean;
 import com.example.weshare.databean.UpdateBean;
 import com.example.weshare.databean.UserBean;
@@ -30,8 +31,6 @@ import retrofit2.http.Query;
 
 public interface HttpService
 {
-    @POST("mobile/control/member/save_token.php")//保存
-    Call<ResponseBody> saveToken(@Query("token")String token,@Query("type")int type,@Query("sid")String sid);
 
     @POST("mobile/control/forum/index_27.php")//论坛
     Call<ResponseBody> forum(@Query("sid")String sid);
@@ -118,4 +117,12 @@ public interface HttpService
     @FormUrlEncoded
     @POST("mobile/login.php")//登录
     Call<UserBean> login(@Field("username")String username, @Field("password")String password, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/control/member/save_token.php")//保存Token
+    Call<ResponseBody> saveToken(@Field("token")String token, @Field("type")int type, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/control/product/cart.php?show=receive")//获取购物车信息
+    Call<ProductBean> getCartInfo(@Field("index")int index, @Field("length")String length, @Field("sid")String sid);
 }

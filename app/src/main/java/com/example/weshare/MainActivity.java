@@ -1,6 +1,10 @@
 package com.example.weshare;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,23 +30,59 @@ import com.example.weshare.utils.UpdateUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ShoppingCartFragment.MyCallBack{
+import cn.jpush.android.api.JPushInterface;
+
+public class MainActivity extends AppCompatActivity implements IMyCallBack
+{
 
     private RadioGroup my_radiogroup;
     private ViewPager my_viewpager;
     private MyPagerAdapter adapter;
-    private List<Fragment> fragments =new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
     private long exitTime;
     private int acceptMessage;
+    private BroadcastReceiver mReceiver = new BroadcastReceiver()
+    {
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            String content = intent.getStringExtra("content");
+            if (!TextUtils.isEmpty(content))
+            {
+                new AlertDialog.Builder(MainActivity.this).setTitle("服务器消息").setMessage(content).setPositiveButton("我知道了", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        dialogInterface.dismiss();
+                        System.exit(-1);
+                    }
+                }).show();
+            }
+        }
+    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         UpdateUtil.checkForUpdateBean(this);
         initDatas();
         initView();
         checkPushStatue();
+        //注册广播接收器
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(MyJPushReceiver.ACTION);
+        registerReceiver(mReceiver, filter);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        //注销接收器
+        unregisterReceiver(mReceiver);
     }
 
     private void checkPushStatue()
@@ -50,11 +91,13 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
         acceptMessage = sharedPreferences.getInt("accept", 0);
         if (acceptMessage == 0)
         {
+            acceptMessage = 2;
             showPushMessageDialog(sharedPreferences);
         }
     }
 
-    private void initView() {
+    private void initView()
+    {
         my_radiogroup = (RadioGroup) findViewById(R.id.main_RG);
         my_viewpager = (ViewPager) findViewById(R.id.main_viewpager);
 
@@ -64,10 +107,13 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
 
         my_radiogroup.check(R.id.main_home_rb);
 
-        my_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        my_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId){
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId)
+            {
+                switch (checkedId)
+                {
                     case R.id.main_home_rb:
                         my_viewpager.setCurrentItem(0);
                         break;
@@ -86,17 +132,19 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
             }
         });
 
-
-
-        my_viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        my_viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
 
             }
 
             @Override
-            public void onPageSelected(int position) {
-                switch (position){
+            public void onPageSelected(int position)
+            {
+                switch (position)
+                {
                     case 0:
                         my_radiogroup.check(R.id.main_home_rb);
                         break;
@@ -116,15 +164,17 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrollStateChanged(int state)
+            {
 
             }
         });
 
-//        my_viewpager.setOffscreenPageLimit(5);
+        my_viewpager.setOffscreenPageLimit(0);
     }
 
-    private void initDatas() {
+    private void initDatas()
+    {
         fragments.add(HomeFragment.newInstance());
         fragments.add(AssortFragment.newInstance());
         fragments.add(ClubFragment.newInstance());
@@ -141,7 +191,8 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
         builder.setTitle("是否接受推送消息").setMessage("开启后能在第一时间收到最新的商品信息哦!");
         CheckBox checkBox = new CheckBox(this);
         checkBox.setText("接受推送");
-        checkBox.setPadding(50,0,0,0);
+        checkBox.setChecked(true);
+        checkBox.setPadding(50, 0, 0, 0);
         checkBox.setTextSize(22);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -151,10 +202,15 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
                 if (b)
                 {
                     acceptMessage = 1;
+                    if (JPushInterface.isPushStopped(MainActivity.this))
+                    {
+                        JPushInterface.resumePush(MainActivity.this);//接受推送
+                    }
                 }
                 else
                 {
                     acceptMessage = 2;
+                    JPushInterface.stopPush(MainActivity.this);//停止推送
                 }
             }
         });
@@ -194,25 +250,35 @@ public class MainActivity extends AppCompatActivity implements ShoppingCartFragm
     }
 
     @Override
-    public void goToFirstFragment()
+    public void goToMainActivityFirstFragment()
     {
         my_viewpager.setCurrentItem(0);
     }
 
-    private class MyPagerAdapter extends FragmentPagerAdapter{
+    private class MyPagerAdapter extends FragmentPagerAdapter
+    {
 
-        public MyPagerAdapter(FragmentManager fm){
+        public MyPagerAdapter(FragmentManager fm)
+        {
             super(fm);
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(int position)
+        {
             return fragments.get(position);
         }
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return fragments.size();
+        }
+
+        @Override
+        public int getItemPosition(Object object)
+        {
+            return super.getItemPosition(object);
         }
     }
 }

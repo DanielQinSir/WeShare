@@ -1,5 +1,6 @@
 package com.example.weshare.settingmodule;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +18,7 @@ import com.example.weshare.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 
 public class MessagePushActivity extends AppCompatActivity
 {
@@ -27,7 +29,7 @@ public class MessagePushActivity extends AppCompatActivity
     Switch mMessagePushSwitchSw;
     @BindView(R.id.message_push_bar_back_iv)
     ImageView mMessagePushBarBackIv;
-    public static int acccptedPush;
+    private int acccptedPush;
     private SharedPreferences mSpf;
 
     @Override
@@ -68,6 +70,7 @@ public class MessagePushActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                saveMessagePushStatue();
                 finish();
             }
         });
@@ -75,9 +78,24 @@ public class MessagePushActivity extends AppCompatActivity
 
     private void saveMessagePushStatue()
     {
+        Intent intent = new Intent();
+        intent.putExtra("push",acccptedPush);
+        setResult(RESULT_OK,intent);
         SharedPreferences.Editor editor = mSpf.edit();
         editor.putInt("accept", acccptedPush);
         editor.commit();
+        switch (acccptedPush)
+        {
+            case 1:
+                if (JPushInterface.isPushStopped(MessagePushActivity.this))
+                {
+                    JPushInterface.resumePush(MessagePushActivity.this);//接受推送
+                }
+                break;
+            case 2:
+                JPushInterface.stopPush(MessagePushActivity.this);//停止推送
+                break;
+        }
     }
 
     public boolean dispatchKeyEvent(KeyEvent event)

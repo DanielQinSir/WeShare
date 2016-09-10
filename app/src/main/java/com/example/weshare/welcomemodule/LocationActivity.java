@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -56,6 +55,7 @@ public class LocationActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 goToActivity(MainActivity.class);
+                finish();
             }
         });
         locationRegisterBtn.setOnClickListener(new OnClickListener()
@@ -63,7 +63,7 @@ public class LocationActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if (TextUtils.isEmpty(locationAddressTv.getText().toString()))
+                if (locationAddressTv.getText().toString().equals("请选择"))
                 {
                     Toast.makeText(LocationActivity.this, "请先选择您所在的小区!", Toast.LENGTH_SHORT).show();
                     return;

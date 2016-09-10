@@ -53,6 +53,19 @@ public class ShareFragment extends Fragment
                 case R.id.myshare_login_btn:
                     goToActivity(LoginActivity.class);
                     break;
+                case R.id.myshare_lv_item_allorder_tv:
+                    goToMyOrderTab(1);
+                    break;
+                case R.id.myshare_lv_item_uncompleted_tv:
+                    goToMyOrderTab(2);
+                    break;
+                case R.id.myshare_lv_item_completed_tv:
+                    goToMyOrderTab(3);
+                    break;
+                case R.id.myshare_lv_item_afterservice_tv:
+                    Toast.makeText(mContext, "售后不在服务区!", Toast.LENGTH_SHORT).show();
+                    // TODO: 2016/9/10
+                    break;
                 default:
                     int position = (int) view.getTag();
                     switch (position)
@@ -95,7 +108,6 @@ public class ShareFragment extends Fragment
     {
         return new ShareFragment();
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -138,6 +150,13 @@ public class ShareFragment extends Fragment
     private void goToActivity(Class clazz)
     {
         startActivity(new Intent(mContext,clazz));
+    }
+
+    private void goToMyOrderTab(int i)
+    {
+        Intent intent = new Intent(mContext, MyOrderActivity.class);
+        intent.putExtra("tab",i);
+        startActivity(intent);
     }
 
     private class Item

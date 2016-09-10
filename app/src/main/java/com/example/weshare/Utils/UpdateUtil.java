@@ -57,7 +57,7 @@ public class UpdateUtil
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("发现新版本,请更新后使用!");
-        builder.setMessage(sUpdateBean.toString());
+        builder.setMessage("最新版:" + sUpdateBean.getApkVersion() + "\n" + sUpdateBean.getApkContent());
         builder.setPositiveButton("立即更新", new DialogInterface.OnClickListener()
         {
             @Override
