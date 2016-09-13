@@ -60,7 +60,7 @@ public class ShareFragment extends Fragment
                     IntentIntegrator.forSupportFragment(ShareFragment.this).initiateScan();
                     break;
                 case R.id.myshare_login_btn:
-                    goToActivity(LoginActivity.class);
+                    goToActivityForResult(LoginActivity.class);
                     break;
                 case R.id.myshare_lv_item_allorder_tv:
                     goToMyOrderTab(1);
@@ -82,7 +82,7 @@ public class ShareFragment extends Fragment
                         case 0:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             Toast.makeText(mContext, "未查询到订单", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,7 @@ public class ShareFragment extends Fragment
                         case 2:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             Toast.makeText(mContext, "账户为空!", Toast.LENGTH_SHORT).show();
@@ -98,7 +98,7 @@ public class ShareFragment extends Fragment
                         case 3:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             Toast.makeText(mContext, "未查询到优惠券!", Toast.LENGTH_SHORT).show();
@@ -106,7 +106,7 @@ public class ShareFragment extends Fragment
                         case 4:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             Toast.makeText(mContext, "未查询到积分记录!", Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class ShareFragment extends Fragment
                         case 5:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             Toast.makeText(mContext, "未查询到收藏!", Toast.LENGTH_SHORT).show();
@@ -122,7 +122,7 @@ public class ShareFragment extends Fragment
                         case 6:
                             if (MyApplication.sUser == null)
                             {
-                                goToActivity(LoginActivity.class);
+                                goToActivityForResult(LoginActivity.class);
                                 return;
                             }
                             goToActivity(HelpActivity.class);
@@ -244,9 +244,14 @@ public class ShareFragment extends Fragment
         }
     }
 
-    private void goToActivity(Class clazz)
+    private void goToActivityForResult(Class clazz)
     {
         startActivityForResult(new Intent(mContext, clazz), 1);
+    }
+
+    private void goToActivity(Class clazz)
+    {
+        startActivity(new Intent(mContext, clazz));
     }
 
     private void reFreShFragment(Intent data)

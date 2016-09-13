@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weshare">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- <uses-permission android:name="android.permission.RESTART_PACKAGES" /> -->
     <!-- JPush -->
     <!-- Required -->
@@ -18,22 +15,14 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.example.weshare.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
     <!-- 摇一摇重力感应器 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- 百度地图 -->
@@ -52,10 +41,8 @@
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 访问网络，网络定位需要上网 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.GET_TASKS"/>
     <!-- Zxing -->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -103,23 +90,6 @@
         <activity android:name=".homepagemodule.LocalSale" />
         <activity android:name=".homepagemodule.LocalSaleDetail" />
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".welcomemodule.WelcomePageTwo"/>
-        <activity android:name=".welcomemodule.WelcomePageThree"/>
-        <activity android:name=".homepagemodule.HomeListDetail"/>
-        <activity android:name=".welcomemodule.LocationActivity"/>
-        <activity android:name=".shoppingcartmodule.LoginActivity"/>
-        <activity android:name=".clubmodule.ClubDetailActivity"/>
-        <activity android:name=".clubmodule.ForumActivity"/>
-        <activity android:name=".homepagemodule.HomeListDetailTwo"/>
-        <activity android:name=".mysharemodule.AboutXXActivity"/>
-        <activity android:name=".mysharemodule.SettingsActivity"/>
-        <activity android:name=".settingmodule.MessagePushActivity"/>
-        <activity android:name=".shoppingcartmodule.RegistActivity"/>
-        <activity android:name=".welcomemodule.SelectAdressActivity">
-        </activity>
-        <activity android:name=".shoppingcartmodule.FindPWDActivity">
-        </activity>
         <activity android:name=".mysharemodule.TakePictureActivity"/>
         <!-- alipay begin -->
 
@@ -260,12 +230,6 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="r59qOH3ciuNZ4fNHGjgiG8WnaDxrNe5S"/>
 
-        <activity android:name=".homepagemodule.ShakeActivity">
-        </activity>
-        <activity android:name=".mysharemodule.MyOrderActivity">
-        </activity>
-        <activity android:name=".homepagemodule.SignInActivity">
-        </activity>
         <activity android:name=".mysharemodule.MapActivity">
         </activity>
         <activity android:name=".mysharemodule.HelpActivity">

@@ -63,15 +63,16 @@ public class LoginActivity extends AppCompatActivity
                         @Override
                         public void onResponse(Call<UserBean> call, Response<UserBean> response)
                         {
-                            MyApplication.sUser = response.body();
+                            UserBean userBean = response.body();
                             dialog.dismiss();
-                            if (MyApplication.sUser.getSucceed() == 0)
+                            if (userBean.getSucceed() == 0)
                             {
                                 Toast.makeText(LoginActivity.this, "登录失败,请检查账号和密码后再试!", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             else
                             {
+                                MyApplication.sUser = userBean;
                                 Toast.makeText(LoginActivity.this, "登陆成功!\n欢迎您" + MyApplication.sUser.getUsername() + "!", Toast.LENGTH_SHORT).show();
                                 if (MyApplication.acceptMessage == 0)
                                 {

@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
 import com.example.weshare.databean.AssortExpandableListBean;
-import com.example.weshare.homepagemodule.CustomRecyclerView;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ public class AssortFragment extends Fragment {
 
     private Context mContext;
     private AssortExpandableListViewAdapter adapter;
-    private ChildRecyclerViewAdapter adapter2;
     private List<AssortExpandableListBean.ListBean.FirstBean> first_list = new ArrayList<>();
     private List<AssortExpandableListBean.ListBean.SecondBean> second_list = new ArrayList<>();
     private List<String> keys = new ArrayList<>();
@@ -99,7 +97,7 @@ public class AssortFragment extends Fragment {
                     for (int i = 0; i <keys.size(); i++) {
                         assortSearchExlistview.expandGroup(i);
                     }
-                    assortSearchExlistview.deferNotifyDataSetChanged();
+//                    assortSearchExlistview.deferNotifyDataSetChanged();
                     adapter.notifyDataSetChanged();
                    // adapter2.notifyDataSetChanged();
                 }
@@ -137,10 +135,6 @@ public class AssortFragment extends Fragment {
 
     class AssortExpandableListViewAdapter extends BaseExpandableListAdapter{
 
-
-        private RecyclerView child_recyclerview;
-        private GridLayoutManager gridLayoutManager;
-
         @Override
         public int getGroupCount() {
             return first_list==null?0:first_list.size();
@@ -154,12 +148,12 @@ public class AssortFragment extends Fragment {
 
         @Override
         public Object getGroup(int i) {
-            return null;
+            return indexs.get(i);
         }
 
         @Override
         public Object getChild(int i, int i1) {
-            return null;
+            return assort_map.get(indexs.get(i)).get(i1);
         }
 
         @Override
@@ -169,7 +163,7 @@ public class AssortFragment extends Fragment {
 
         @Override
         public long getChildId(int i, int i1) {
-            return 0;
+            return i1;
         }
 
         @Override
@@ -205,13 +199,12 @@ public class AssortFragment extends Fragment {
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastchild, View convertview, ViewGroup parent) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.assort_exlistview_child_item,parent,false);
-            child_recyclerview = (RecyclerView) view.findViewById(R.id.assort_exlistview_child_recyclerview);
+            RecyclerView child_recyclerview = (RecyclerView) view.findViewById(R.id.assort_exlistview_child_recyclerview);
 
-            gridLayoutManager = new GridLayoutManager(mContext,4);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 4);
             child_recyclerview.setLayoutManager(gridLayoutManager);
-            adapter2 = new ChildRecyclerViewAdapter(groupPosition);
+            ChildRecyclerViewAdapter adapter2 = new ChildRecyclerViewAdapter(groupPosition);
             child_recyclerview.setAdapter(adapter2);
-
             return view;
         }
 
