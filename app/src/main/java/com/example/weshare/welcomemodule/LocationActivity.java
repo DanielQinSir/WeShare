@@ -54,6 +54,11 @@ public class LocationActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                if (locationAddressTv.getText().toString().equals("请选择"))
+                {
+                    Toast.makeText(LocationActivity.this, "请先选择您所在的小区!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 goToActivity(MainActivity.class);
                 finish();
             }

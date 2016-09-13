@@ -1,5 +1,6 @@
 package com.example.weshare.shoppingcartmodule;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MainActivity;
 import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.databean.UserBean;
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity
                         Toast.makeText(LoginActivity.this, "请输入账号和密码后再登录!", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    final ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "登录中", "正在登录,请稍后...");
+
                     HttpServiceUtil.init().login(username, pwd, "").enqueue(new Callback<UserBean>()
                     {
 
@@ -60,6 +64,7 @@ public class LoginActivity extends AppCompatActivity
                         public void onResponse(Call<UserBean> call, Response<UserBean> response)
                         {
                             MyApplication.sUser = response.body();
+                            dialog.dismiss();
                             if (MyApplication.sUser.getSucceed() == 0)
                             {
                                 Toast.makeText(LoginActivity.this, "登录失败,请检查账号和密码后再试!", Toast.LENGTH_SHORT).show();
@@ -68,9 +73,16 @@ public class LoginActivity extends AppCompatActivity
                             else
                             {
                                 Toast.makeText(LoginActivity.this, "登陆成功!\n欢迎您" + MyApplication.sUser.getUsername() + "!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent();
-                                intent.putExtra("ok", "ok");
-                                setResult(RESULT_OK, intent);
+                                if (MyApplication.acceptMessage == 0)
+                                {
+                                    gotoActivity(MainActivity.class);
+                                }
+                                else
+                                {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("ok", "ok");
+                                    setResult(RESULT_OK, intent);
+                                }
                                 finish();
                             }
                         }
@@ -78,11 +90,14 @@ public class LoginActivity extends AppCompatActivity
                         @Override
                         public void onFailure(Call<UserBean> call, Throwable t)
                         {
+                            dialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "网络连接失败,请重试!", Toast.LENGTH_SHORT).show();
 
                         }
                     });
                     break;
                 case R.id.login_findpwd_tv:
+                    gotoActivity(FindPWDActivity.class);
                     break;
             }
         }

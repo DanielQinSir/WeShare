@@ -101,6 +101,7 @@ public class ShakeActivity extends AppCompatActivity
             int medumValue = 18;// 三星 i9250怎么晃都不会超过20，没办法，只设置19了
             if (Math.abs(x) > medumValue || Math.abs(y) > medumValue || Math.abs(z) > medumValue)
             {
+                sensorManager.unregisterListener(sensorEventListener);
                 Toast.makeText(ShakeActivity.this, "x轴方向的重力加速度" + x + "；y轴方向的重力加速度" + y + "；z轴方向的重力加速度" + z, Toast.LENGTH_SHORT).show();
                 mShakeContentTv.setText("正在搜索惊喜~");
                 vibrator.vibrate(200);//振动
@@ -141,7 +142,7 @@ public class ShakeActivity extends AppCompatActivity
     private void showShakeDialog()
     {
         final boolean result = new Random().nextBoolean();
-        new AlertDialog.Builder(ShakeActivity.this).setTitle("查找结果").setMessage(result ? "恭喜你,摇到了一个妹子!" : "很遗憾,连个帅哥都没有.").setPositiveButton(result ? "立即去前台领取" : "再试一次", new DialogInterface.OnClickListener()
+        new AlertDialog.Builder(ShakeActivity.this).setTitle("查找结果").setMessage(result ? "恭喜你,摇到了一个妹子!" : "很遗憾,连个恐龙都没有.").setPositiveButton(result ? "立即去前台领取" : "再试一次", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
@@ -150,6 +151,8 @@ public class ShakeActivity extends AppCompatActivity
                 if (result)
                 {
                     Toast.makeText(ShakeActivity.this, "成功领取妹子一枚!", Toast.LENGTH_SHORT).show();
+                        sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+                        // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率
                 }
             }
         }).setNegativeButton("不玩了", new DialogInterface.OnClickListener()

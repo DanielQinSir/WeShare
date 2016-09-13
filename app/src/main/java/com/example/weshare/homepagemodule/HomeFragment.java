@@ -27,6 +27,7 @@ import com.example.weshare.databean.HomeListBean;
 import com.example.weshare.databean.HomeRecyclerViewBean;
 import com.example.weshare.databean.HomeRecyclerViewLogoBean;
 import com.example.weshare.databean.HomeViewPagerBean;
+import com.example.weshare.mysharemodule.HelpActivity;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import java.util.ArrayList;
@@ -77,7 +78,8 @@ public class HomeFragment extends Fragment
                     break;
                 case 2:
                     break;
-                case 3:
+                case 3://售后
+                    goToActivity(HelpActivity.class);
                     break;
                 case 4://每日签到
                     goToActivity(SignInActivity.class);
@@ -85,7 +87,8 @@ public class HomeFragment extends Fragment
                 case 5://摇一摇
                     goToActivity(ShakeActivity.class);
                     break;
-                case 6:
+                case 6://邀请好友
+                    goToActivity(ShareWithFriendsActivity.class);
                     break;
                 case 7:
                     break;

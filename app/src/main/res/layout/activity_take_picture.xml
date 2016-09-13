@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.weshare.mysharemodule.TakePictureActivity">
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/preview_surface"/>
+    <Button
+        android:id="@+id/take_pic_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/no"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="20dp"
+        android:onClick="onNoClick"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="拍照"
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:onClick="onTakePictureClick"/>
+    <Button
+        android:id="@+id/take_pic_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yes"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:onClick="onYesClick"/>
+</FrameLayout>

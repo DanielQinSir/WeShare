@@ -40,14 +40,13 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
     private MyPagerAdapter adapter;
     private List<Fragment> fragments = new ArrayList<>();
     private long exitTime;
-    private int acceptMessage;
     private BroadcastReceiver mReceiver = new BroadcastReceiver()
     {
         @Override
         public void onReceive(Context context, Intent intent)
         {
             String content = intent.getStringExtra("content");
-            if (!TextUtils.isEmpty(content))
+            if (! TextUtils.isEmpty(content))
             {
                 new AlertDialog.Builder(MainActivity.this).setTitle("服务器消息").setMessage(content).setPositiveButton("我知道了", new DialogInterface.OnClickListener()
                 {
@@ -55,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
                         dialogInterface.dismiss();
-                        System.exit(-1);
                     }
                 }).show();
+
             }
         }
     };
@@ -77,23 +76,21 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         registerReceiver(mReceiver, filter);
     }
 
+    private void checkPushStatue()
+    {
+        if (MyApplication.acceptMessage == 0)
+        {
+            MyApplication.acceptMessage = 2;
+            showPushMessageDialog();
+        }
+    }
+
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
         //注销接收器
         unregisterReceiver(mReceiver);
-    }
-
-    private void checkPushStatue()
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
-        acceptMessage = sharedPreferences.getInt("accept", 0);
-        if (acceptMessage == 0)
-        {
-            acceptMessage = 2;
-            showPushMessageDialog(sharedPreferences);
-        }
     }
 
     private void initView()
@@ -182,10 +179,9 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         shoppingCartFragment.setListener(this);
         fragments.add(shoppingCartFragment);
         fragments.add(ShareFragment.newInstance());
-
     }
 
-    private void showPushMessageDialog(final SharedPreferences sharedPreferences)
+    private void showPushMessageDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("是否接受推送消息").setMessage("开启后能在第一时间收到最新的商品信息哦!");
@@ -201,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             {
                 if (b)
                 {
-                    acceptMessage = 1;
+                    MyApplication.acceptMessage = 1;
                     if (JPushInterface.isPushStopped(MainActivity.this))
                     {
                         JPushInterface.resumePush(MainActivity.this);//接受推送
@@ -209,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
                 }
                 else
                 {
-                    acceptMessage = 2;
+                    MyApplication.acceptMessage = 2;
                     JPushInterface.stopPush(MainActivity.this);//停止推送
                 }
             }
@@ -221,8 +217,9 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             public void onClick(DialogInterface dialogInterface, int i)
             {
                 dialogInterface.dismiss();
+                SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("accept", acceptMessage);
+                editor.putInt("accept", MyApplication.acceptMessage);
                 editor.commit();
             }
         });
@@ -241,8 +238,12 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             }
             else
             {
-                finish();
-                System.exit(0);
+//                finish();
+//                onDestroy();
+//                System.exit(0);
+                android.os.Process.killProcess(android.os.Process.myPid());
+//                ActivityManager activityMgr=(ActivityManager)MainActivity.this.getSystemService(ACTIVITY_SERVICE);
+//                activityMgr.restartPackage(getPackageName());
             }
             return true;
         }
@@ -284,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         @Override
         public int getItemPosition(Object object)
         {
-            if (object instanceof ShoppingCartFragment)
+            if (object instanceof ShoppingCartFragment || object instanceof ShareFragment)
             {
                 return POSITION_NONE;
             }

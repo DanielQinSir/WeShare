@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity
             {
                 if (year != Calendar.YEAR || month + 1 != Calendar.MONTH || dayOfMonth != Calendar.DAY_OF_MONTH)
                 {
-                    String date = year + "年" + month + 1 + "月" + dayOfMonth + "日";
+                    String date = year + "年" + (month + 1) + "月" + dayOfMonth + "日";
                     Toast.makeText(SignInActivity.this, "您选择了" + date + ",但是只能签到今天哦!", Toast.LENGTH_LONG).show();
                     mSigninActivitySigninBtn.setBackgroundColor(Color.GRAY);
                     mSigninActivitySigninBtn.setEnabled(false);

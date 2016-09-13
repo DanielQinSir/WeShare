@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.shoppingcartmodule.LoginActivity;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,8 @@ public class ShareFragment extends Fragment
 
     @BindView(R.id.myshare_bar_settings_iv)
     ImageView mMyshareBarSettingsIv;
+    @BindView(R.id.myshare_bar_scan_iv)
+    ImageView mMyshareBarScanIv;
     private Button mMyshareLoginBtn;
     @BindView(R.id.myshare_listview_lv)
     ListView mMyshareListviewLv;
@@ -50,6 +55,9 @@ public class ShareFragment extends Fragment
             {
                 case R.id.myshare_bar_settings_iv:
                     goToActivity(SettingsActivity.class);
+                    break;
+                case R.id.myshare_bar_scan_iv:
+                    IntentIntegrator.forSupportFragment(ShareFragment.this).initiateScan();
                     break;
                 case R.id.myshare_login_btn:
                     goToActivity(LoginActivity.class);
@@ -77,7 +85,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "我的订单", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "未查询到订单", Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
                             if (MyApplication.sUser == null)
@@ -85,7 +93,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "我的账户", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "账户为空!", Toast.LENGTH_SHORT).show();
                             break;
                         case 3:
                             if (MyApplication.sUser == null)
@@ -93,7 +101,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "我的优惠券", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "未查询到优惠券!", Toast.LENGTH_SHORT).show();
                             break;
                         case 4:
                             if (MyApplication.sUser == null)
@@ -101,7 +109,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "积分记录", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "未查询到积分记录!", Toast.LENGTH_SHORT).show();
                             break;
                         case 5:
                             if (MyApplication.sUser == null)
@@ -109,7 +117,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "我的收藏", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "未查询到收藏!", Toast.LENGTH_SHORT).show();
                             break;
                         case 6:
                             if (MyApplication.sUser == null)
@@ -117,7 +125,7 @@ public class ShareFragment extends Fragment
                                 goToActivity(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "帮助与反馈", Toast.LENGTH_SHORT).show();
+                            goToActivity(HelpActivity.class);
                             break;
                         case 7:
                             Intent intent = new Intent();
@@ -125,6 +133,9 @@ public class ShareFragment extends Fragment
                             TextView phoneView = (TextView) view.findViewById(R.id.myshare_lv_item_phone_tv);
                             intent.setData(Uri.parse("tel:" + phoneView.getText().toString().trim()));
                             startActivity(intent);
+                            break;
+                        case 8:
+                            goToActivity(MapActivity.class);
                             break;
                         case 9:
                             goToActivity(AboutXXActivity.class);
@@ -156,7 +167,9 @@ public class ShareFragment extends Fragment
         mMyshareBarSettingsIv.setOnClickListener(mlistener);
         View headView = LayoutInflater.from(mContext).inflate(R.layout.myshare_head_view, null, false);
         mMyshareLoginBtn = (Button) headView.findViewById(R.id.myshare_login_btn);
+        mMyshareLoginBtn.setText(MyApplication.sUser == null ? "登录/注册" : "已登录(" + MyApplication.sUser.getUsername() + ")");
         mMyshareLoginBtn.setOnClickListener(mlistener);
+        mMyshareBarScanIv.setOnClickListener(mlistener);
         mMyshareListviewLv.addHeaderView(headView);
         initData();
         mMyshareListviewAdapter = new MyshareListviewAdapter();
@@ -179,9 +192,70 @@ public class ShareFragment extends Fragment
         datas.add(new Item("关于享享", R.drawable.wdxx));
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode)
+        {
+            case 1:
+                reFreShFragment(data);
+                break;
+            default:
+                showScanResult(requestCode, resultCode, data);
+                break;
+        }
+    }
+
+    private void showScanResult(int requestCode, int resultCode, Intent data)
+    {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null)
+        {
+            String resultContents = result.getContents();
+            if (! TextUtils.isEmpty(resultContents))
+            {
+                String contents = resultContents.trim();
+                if (TextUtils.isEmpty(contents))
+                {
+                    Toast.makeText(mContext, "扫描被取消!", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    if (contents.startsWith("http://"))
+                    {
+                        Uri uri = Uri.parse(contents);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(mContext, "扫描结果:\n" + contents, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+            else
+            {
+                Toast.makeText(mContext, "未扫描到结果!", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
     private void goToActivity(Class clazz)
     {
-        startActivity(new Intent(mContext, clazz));
+        startActivityForResult(new Intent(mContext, clazz), 1);
+    }
+
+    private void reFreShFragment(Intent data)
+    {
+        if (data.getStringExtra("ok").equals("ok"))
+        {
+            //刷新视图
+            mMyshareLoginBtn.setText("已登录(" + MyApplication.sUser.getUsername() + ")");
+        }
     }
 
     private void goToMyOrderTab(int i)
@@ -253,6 +327,8 @@ public class ShareFragment extends Fragment
                     break;
                 case 8:
                     itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_adress, viewGroup, false);
+                    itemView.setTag(i);
+                    itemView.setOnClickListener(mlistener);
                     break;
                 default:
                     itemView = LayoutInflater.from(mContext).inflate(R.layout.myshare_listview_item_normal, viewGroup, false);

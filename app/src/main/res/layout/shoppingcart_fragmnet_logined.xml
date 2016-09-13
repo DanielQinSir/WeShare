@@ -59,7 +59,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/shoppingcart_logined_totalchecked_cb"
             android:gravity="center_vertical"
-            android:text="全选: 100"/>
+            android:text="全选: "/>
 
         <Button
             android:id="@+id/shoppingcart_logined_pay_btn"

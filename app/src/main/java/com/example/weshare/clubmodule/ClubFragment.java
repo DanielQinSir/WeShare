@@ -109,7 +109,7 @@ public class ClubFragment extends Fragment
         mClubMyPostBtn.setOnClickListener(mOnClickListener);
         mClubReplayMeBtn.setOnClickListener(mOnClickListener);
 // Focusable 为True，PopupWindow的点击事件才会相应
-        mPopWindow = new PopupWindow(view, 150, 120, true);
+        mPopWindow = new PopupWindow(view, dip2px(150), dip2px(120), true);
 //// 必须在代码中设置一下背景色，点击外面不会隐藏此弹窗
 //        mPopWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 // Focusable 为False时，不执行则点击外面不会隐藏此弹窗
@@ -144,6 +144,11 @@ public class ClubFragment extends Fragment
 
             }
         });
+    }
+
+    private int dip2px(float dpValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
     private void initAd()

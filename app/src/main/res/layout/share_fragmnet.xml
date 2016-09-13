@@ -9,6 +9,15 @@
         android:layout_height="?actionBarSize">
 
         <ImageView
+            android:id="@+id/myshare_bar_scan_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/scan"/>
+
+        <ImageView
             android:id="@+id/myshare_bar_settings_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

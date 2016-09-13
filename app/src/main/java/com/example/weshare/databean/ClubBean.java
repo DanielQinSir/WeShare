@@ -15,7 +15,7 @@ public class ClubBean
     /**
      * ad : [{"pic":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/08/24/1472002662.jpg","tid":"2228"},{"pic":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/07/12/1468293512.jpg","tid":"2148"},{"pic":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/07/04/1467593693.jpg","tid":"2113"},{"pic":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465386935.jpg","tid":"2062"},{"pic":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465385776.jpg","tid":"2061"}]
      * ad_num : 5
-     * module : [{"id":"1","module_name":"官方通告","logo":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384725.jpg","desc":"号外号外！享享新闻、动态、活动通知，都在这里公布哦~"},{"id":"2","module_name":"show菜","logo":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384835.jpg","desc":"用放心食材，做安心饭菜，秀出你的厨艺，一起聊聊厨房与美食。"},{"id":"8","module_name":"线下活动","logo":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/07/01/1467340736.png","desc":"与享享一起畅游寻鲜，活动通知、报名、行程和游记都在这里汇总~"},{"id":"7","module_name":"吐槽吧","logo":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384858.jpg","desc":"意见建议想说就说，开心不开心都来吐槽，享享有你才会更好~"}]
+     * module : [{"id":"1","module_name":"官方通告","ic_launcher":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384725.jpg","desc":"号外号外！享享新闻、动态、活动通知，都在这里公布哦~"},{"id":"2","module_name":"show菜","ic_launcher":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384835.jpg","desc":"用放心食材，做安心饭菜，秀出你的厨艺，一起聊聊厨房与美食。"},{"id":"8","module_name":"线下活动","ic_launcher":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/07/01/1467340736.png","desc":"与享享一起畅游寻鲜，活动通知、报名、行程和游记都在这里汇总~"},{"id":"7","module_name":"吐槽吧","ic_launcher":"http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384858.jpg","desc":"意见建议想说就说，开心不开心都来吐槽，享享有你才会更好~"}]
      * module_num : 4
      * succeed : 1
      */
@@ -32,7 +32,7 @@ public class ClubBean
     /**
      * id : 1
      * module_name : 官方通告
-     * logo : http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384725.jpg
+     * ic_launcher : http://cdn.xxiang365.com/uploadfile/product/forumnew/2016/06/08/1465384725.jpg
      * desc : 号外号外！享享新闻、动态、活动通知，都在这里公布哦~
      */
 

@@ -137,6 +137,14 @@ public class ViewPagerADFragment extends Fragment
             ImageView imageView = new ImageView(mContext);
             imageView.setImageResource(R.drawable.point_selector);
             imageView.setPadding(10,0,10,0);
+            if (i == 0)
+            {
+                imageView.setEnabled(true);
+            }
+            else
+            {
+                imageView.setEnabled(false);
+            }
             mLinearLayout.addView(imageView);
         }
     }

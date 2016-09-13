@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 
 import butterknife.BindView;
@@ -29,8 +30,6 @@ public class MessagePushActivity extends AppCompatActivity
     Switch mMessagePushSwitchSw;
     @BindView(R.id.message_push_bar_back_iv)
     ImageView mMessagePushBarBackIv;
-    private int acccptedPush;
-    private SharedPreferences mSpf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,8 +38,6 @@ public class MessagePushActivity extends AppCompatActivity
         setContentView(R.layout.activity_message_push);
         ButterKnife.bind(this);
 
-        mSpf = getSharedPreferences("push", MODE_PRIVATE);
-        acccptedPush = mSpf.getInt("accept", 0);
         mMessagePushSwitchSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -50,18 +47,18 @@ public class MessagePushActivity extends AppCompatActivity
                 {
                     Toast.makeText(MessagePushActivity.this, "接受推送消息!", Toast.LENGTH_SHORT).show();
                     mMessagePushContentTv.setText("已开启接受推送消息");
-                    acccptedPush = 1;
+                    MyApplication.acceptMessage = 1;
                 }
                 else
                 {
                     Toast.makeText(MessagePushActivity.this, "不接受推送消息!", Toast.LENGTH_SHORT).show();
                     mMessagePushContentTv.setText("已关闭接受推送消息");
-                    acccptedPush = 2;
+                    MyApplication.acceptMessage = 2;
                 }
             }
         });
         mMessagePushSwitchSw.setButtonDrawable(new ColorDrawable(Color.YELLOW));
-        if (acccptedPush == 1)
+        if (MyApplication.acceptMessage == 1)
         {
             mMessagePushSwitchSw.setChecked(true);
         }
@@ -79,12 +76,13 @@ public class MessagePushActivity extends AppCompatActivity
     private void saveMessagePushStatue()
     {
         Intent intent = new Intent();
-        intent.putExtra("push",acccptedPush);
-        setResult(RESULT_OK,intent);
-        SharedPreferences.Editor editor = mSpf.edit();
-        editor.putInt("accept", acccptedPush);
+        intent.putExtra("push", MyApplication.acceptMessage);
+        setResult(RESULT_OK, intent);
+        SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("accept", MyApplication.acceptMessage);
         editor.commit();
-        switch (acccptedPush)
+        switch (MyApplication.acceptMessage)
         {
             case 1:
                 if (JPushInterface.isPushStopped(MessagePushActivity.this))

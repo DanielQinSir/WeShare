@@ -1,7 +1,9 @@
 package com.example.weshare;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.example.weshare.databean.UserBean;
 
 import java.util.HashSet;
@@ -19,6 +21,7 @@ import cn.jpush.android.api.JPushInterface;
 public class MyApplication extends Application
 {
     public static UserBean sUser;
+    public static int acceptMessage;
 
     @Override
     public void onCreate()
@@ -32,5 +35,14 @@ public class MyApplication extends Application
         set.add("IT");
         //添加设备标签和别名
         JPushInterface.setAliasAndTags(this,"newUser",set);
+        getPushStatue();
+        SDKInitializer.initialize(getApplicationContext());
     }
+
+    private void getPushStatue()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("push", MODE_PRIVATE);
+        acceptMessage = sharedPreferences.getInt("accept", 0);
+    }
+
 }

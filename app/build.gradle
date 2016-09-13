@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.example.weshare"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
@@ -31,6 +31,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -48,7 +54,13 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.android.support:design:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
-    compile files('lib/pinyin4j-2.5.0.jar')
-    compile files('lib/alipaySdk-20160825.jar')
-    compile 'cn.jiguang:jpush:2.1.9'  // 此处以SDK 2.1.9版本为例
+    compile 'cn.jiguang:jpush:2.1.9'
+    // 此处以SDK 2.1.9版本为例
+    compile files('libs/alipaySdk-20160825.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/pinyin4j-2.5.0.jar')
+    compile 'com.journeyapps:zxing-android-embedded:3.3.0'
+    compile 'com.google.zxing:core:3.2.1'
+    compile files('libs/MobCommons-2016.0830.1940.jar')
+    compile files('libs/MobTools-2016.0830.1940.jar')
 }

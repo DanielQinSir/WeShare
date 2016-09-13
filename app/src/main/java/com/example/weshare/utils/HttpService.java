@@ -1,5 +1,6 @@
 package com.example.weshare.utils;
 
+import com.example.weshare.databean.HelpBean;
 import com.example.weshare.databean.StartADBean;
 import com.example.weshare.databean.AboutXXBean;
 import com.example.weshare.databean.ClubBean;
@@ -125,4 +126,8 @@ public interface HttpService
     @FormUrlEncoded
     @POST("mobile/control/product/cart.php?show=receive")//获取购物车信息
     Call<ProductBean> getCartInfo(@Field("index")int index, @Field("length")String length, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("mobile/control/index/after_service.php")//获取帮助信息
+    Call<HelpBean> getHelp(@Field("submit")String submit, @Field("sid")String sid);
 }

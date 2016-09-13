@@ -177,7 +177,7 @@ public class SelectAdressActivity extends AppCompatActivity
                 mData = response.body();
                 if (mData != null)
                 {
-                    HttpServiceUtil.SID = mData.getSid();
+//                    HttpServiceUtil.SID = mData.getSid();
                     reFormData();
                     if (mMyListViewAdapter != null)
                     {
@@ -319,7 +319,7 @@ public class SelectAdressActivity extends AppCompatActivity
         public View getView(int i, View view, ViewGroup viewGroup)
         {
             TextView textView = new TextView(SelectAdressActivity.this);
-            textView.setTextColor(Color.YELLOW);
+            textView.setTextColor(Color.RED);
             textView.setTextSize(20);
             textView.setHeight(dip2px(30));
             textView.setPadding(10, 0, 10, 0);
