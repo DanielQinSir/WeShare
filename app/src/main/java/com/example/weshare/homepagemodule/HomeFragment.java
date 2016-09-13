@@ -162,7 +162,7 @@ public class HomeFragment extends Fragment {
             gridLayoutManager = new GridLayoutManager(mContext, 3);
             home_recyclerview.setLayoutManager(gridLayoutManager);
             home_Listview.addHeaderView(view2);
-            initAd();
+             initAd();
             initAdapter();
         }
 
