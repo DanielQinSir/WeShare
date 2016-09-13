@@ -1,5 +1,6 @@
 package com.example.weshare.welcomemodule;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.example.weshare.MainActivity;
 import com.example.weshare.R;
 import com.example.weshare.databean.StartADBean;
@@ -20,6 +22,8 @@ public class WelcomePageOne extends AppCompatActivity {
     private SharedPreferences msp;
     private int succeed;
     private  String flag;
+    private String pic_url;
+    private Context mContext;
     private Handler mhandler =new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -28,10 +32,12 @@ public class WelcomePageOne extends AppCompatActivity {
             switch (msg.what) {
                 case 1:
                     if (flag.equals("")) {
-                       /* SharedPreferences.Editor editor = msp.edit();
-                        editor.putString("flag","123");
-                        editor.commit();*/
-                        startActivity(new Intent(WelcomePageOne.this, WelcomePageTwo.class));
+
+                       Intent i = new Intent(WelcomePageOne.this, WelcomePageTwo.class);
+                        if(pic_url!=null){
+                            i.putExtra("pic",pic_url);
+                        }
+                        startActivity(i);
                         finish();
                     } else {
                         startActivity(new Intent(WelcomePageOne.this, WelcomePageThree.class));
@@ -47,16 +53,6 @@ public class WelcomePageOne extends AppCompatActivity {
                         finish();
                     }
                     break;
-                    /*if(flag.equals("")){
-                        *//*SharedPreferences.Editor editor = msp.edit();
-                        editor.putString("flag","123");
-                        editor.commit();*//*
-                        startActivity(new Intent(WelcomePageOne.this,WelcomePageTwo.class));
-                        finish();
-                    }else{
-                        startActivity(new Intent(WelcomePageOne.this,MainActivity.class));
-                        finish();
-                    }*/
             }
         }
     };
@@ -66,12 +62,12 @@ public class WelcomePageOne extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page_one);
+        mContext= this;
         msp = getSharedPreferences("location", MODE_PRIVATE);
-        //  msp=getSharedPreferences("welcome",MODE_PRIVATE);
+        flag = msp.getString("zoneID", "");
         getDatas();
-         flag = msp.getString("zoneID", "");
 
-       // flag = msp.getString("flag","");
+
 
     }
 
@@ -80,6 +76,7 @@ public class WelcomePageOne extends AppCompatActivity {
             @Override
             public void onResponse(Call<StartADBean> call, Response<StartADBean> response) {
                succeed = response.body().getSucceed();
+                pic_url=response.body().getPic();
                 if(succeed==1){
                     mhandler.sendEmptyMessageDelayed(1,2000);
                 }
@@ -93,6 +90,6 @@ public class WelcomePageOne extends AppCompatActivity {
                 startActivity(new Intent(WelcomePageOne.this,MainActivity.class));
             }
         });
-       // mhandler.sendEmptyMessageDelayed(1, 2000);
+
     }
 }

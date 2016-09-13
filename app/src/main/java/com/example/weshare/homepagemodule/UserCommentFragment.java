@@ -74,7 +74,10 @@ public class UserCommentFragment extends Fragment {
             public void onResponse(Call<UserCommentBean> call, Response<UserCommentBean> response) {
                 comment_bean=response.body();
                 list_bean = comment_bean.getList();
-                adapter.notifyDataSetChanged();
+                if(list_bean!=null){
+                    adapter.notifyDataSetChanged();
+                }
+
             }
 
             @Override
@@ -90,6 +93,7 @@ public class UserCommentFragment extends Fragment {
         private RatingBar ratingbar;
         private TextView comment_name;
         private TextView comment_time;
+        private TextView comment_content;
 
         @Override
         public int getCount() {
@@ -109,7 +113,7 @@ public class UserCommentFragment extends Fragment {
         @Override
         public View getView(int position, View convertview, ViewGroup parent) {
             View view = null;
-            if(comment_bean!=null){
+            if(list_bean!=null){
                 if(position==0){
                     view = LayoutInflater.from(mContext).inflate(R.layout.user_comment_fragment_listview_item1,parent,false);
                     comment_num_tv = (TextView) view.findViewById(R.id.comment_listview_item1_num_tv);
@@ -121,11 +125,15 @@ public class UserCommentFragment extends Fragment {
                     ratingbar = (RatingBar) view.findViewById(R.id.comment_listview_item2_ratingbar);
                     comment_name = (TextView)view.findViewById(R.id.comment_listview_item2_name_tv);
                     comment_time = (TextView) view.findViewById(R.id.comment_listview_item2_time_tv);
+                    comment_content = (TextView) view.findViewById(R.id.comment_listview_item2_content_tv);
                     if(list_bean!=null){
                         ratingbar.setNumStars(Integer.parseInt(list_bean.get(position-1).getStars()));
                         ratingbar.setRating(Float.parseFloat((list_bean.get(position-1).getStars())));
                         comment_name.setText(list_bean.get(position-1).getUsername());
                         comment_time.setText(list_bean.get(position-1).getUptime());
+                        if(list_bean.get(position-1).getContent()!=null){
+                            comment_content.setText(list_bean.get(position-1).getContent());
+                        }
                     }
                 }
             }

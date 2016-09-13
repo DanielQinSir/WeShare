@@ -1,12 +1,21 @@
 package com.example.weshare.utils;
 
+import com.example.weshare.databean.AssortExpandListAllGoodsBean;
+import com.example.weshare.databean.AssortExpandableListBean;
+import com.example.weshare.databean.AssortExpandableListOneGoodBean;
+import com.example.weshare.databean.DailyMenuBean;
+import com.example.weshare.databean.NewGoodsBean;
+import com.example.weshare.databean.NutritionRecommendBean;
 import com.example.weshare.databean.StartADBean;
 import com.example.weshare.databean.AboutXXBean;
 import com.example.weshare.databean.ClubBean;
 import com.example.weshare.databean.HomeListBean;
 import com.example.weshare.databean.HomeListDetailBean;
 import com.example.weshare.databean.HomeRecyclerViewBean;
+import com.example.weshare.databean.HomeRecyclerViewFirstADBean;
 import com.example.weshare.databean.HomeRecyclerViewLogoBean;
+import com.example.weshare.databean.HomeRecyclerViewLogoDetailBean;
+import com.example.weshare.databean.HomeRecyclerViewSecondADBean;
 import com.example.weshare.databean.HomeViewPagerBean;
 import com.example.weshare.databean.LocationBean;
 import com.example.weshare.databean.ProductBean;
@@ -65,9 +74,7 @@ public interface HttpService
     @FormUrlEncoded
     @POST("/mobile/control/index/special_area_all.php")
     Call<HomeListBean> getListInfo(@Field("submit") String value, @Field("sid") String sid);//获取首页listview的数据
-    @FormUrlEncoded
-    @POST("/mobile/control/index/special_area.php")
-    Call<HomeRecyclerViewLogoBean> getLogoInfo(@Field("submit") String value, @Field("sid") String sid);//获取中间三个横条第3个的数据
+
     @FormUrlEncoded
     @POST("/mobile/control/index/advs.php")
     Call<HomeViewPagerBean> getViewpagerInfo(@Field("sid") String sid);//获取上方滚动Viewpager的数据
@@ -119,10 +126,50 @@ public interface HttpService
     Call<UserBean> login(@Field("username")String username, @Field("password")String password, @Field("sid")String sid);
 
     @FormUrlEncoded
+    @POST("/mobile/control/index/activity_product.php")//获取中间三个广告第一个广告的详情
+    Call<HomeRecyclerViewFirstADBean> getOnTimeInfo(@Field("submit") String submit,@Field("type")String type,@Field("sid") String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/activity_product.php")//获取中间三个广告第二个广告的详情
+    Call<HomeRecyclerViewSecondADBean> getDailyRecommendInfo(@Field("type") String type,@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/special_area.php")//获取中间三个横条第三个广告详情
+    Call<HomeRecyclerViewLogoBean> getLogoInfo(@Field("submit") String sumit, @Field("sid") String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/local_sale.php")//获取中间三个横条第三个广告第二层详情
+    Call<HomeRecyclerViewLogoDetailBean> getLogoDetailInfo(@Field("submit")String submit, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/get_cat.php")//获取分类首页的数据
+    Call<AssortExpandableListBean> getAssortExpandableListInfo(@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/get_goods.php")//获取分类首页加号里所有商品的详情
+    Call<AssortExpandListAllGoodsBean> getAssortAllGoodsBean(@Field("catid")int catid,@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/cat.php")//获取分类首页里一个具体类目的商品详情
+    Call<AssortExpandableListOneGoodBean> getAssortOneGoodBean(@Field("submit")String submit,@Field("catid")String catid,@Field("sid")String sid);
+
+    @FormUrlEncoded
     @POST("mobile/control/member/save_token.php")//保存Token
     Call<ResponseBody> saveToken(@Field("token")String token, @Field("type")int type, @Field("sid")String sid);
 
     @FormUrlEncoded
     @POST("mobile/control/product/cart.php?show=receive")//获取购物车信息
     Call<ProductBean> getCartInfo(@Field("index")int index, @Field("length")String length, @Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/activity_product.php")//获取新品上架详情
+    Call<NewGoodsBean> getNewGoodsInfo(@Field("type") String type,@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/lovelife.php")//获取每日菜谱详情
+    Call<DailyMenuBean> getDailyMenuInfo(@Field("submit")String submit,@Field("mcatid") int mcatid,@Field("sid") String sid,@Field("mtype") int mtype);
+
+    @FormUrlEncoded
+    @POST("/mobile/control/index/new_special_area_info.php")//获取营养推荐详情
+    Call<NutritionRecommendBean> getNutritionRecommendInfo(@Field("type")int type,@Field("sid")String sid);
 }

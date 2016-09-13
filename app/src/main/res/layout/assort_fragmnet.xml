@@ -2,11 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:background="#F8F8F8"
+        >
+        <Button
+            android:id="@+id/assort_search_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="搜索享享商品"
+            android:drawableLeft="@drawable/searcher_new_search_icon"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="5dp"
+            android:background="@drawable/gray_round_shape"
+            android:textColor="#999999"
+            android:layout_marginRight="20dp"
+            />
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D5D5D5"/>
+    <ExpandableListView
+        android:id="@+id/assort_search_exlistview"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="assort"
-        android:textSize="30sp"
-        android:gravity="center"/>
-
+       />
 </LinearLayout>

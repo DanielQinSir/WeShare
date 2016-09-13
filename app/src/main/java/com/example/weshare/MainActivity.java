@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
     private List<Fragment> fragments = new ArrayList<>();
     private long exitTime;
     private int acceptMessage;
+    private Intent intent;
+    private int flag;
     private BroadcastReceiver mReceiver = new BroadcastReceiver()
     {
         @Override
@@ -67,9 +70,16 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UpdateUtil.checkForUpdateBean(this);
         initDatas();
         initView();
+        intent = getIntent();
+        flag = intent.getIntExtra("flag",0);
+        if(flag==1){
+            my_viewpager.setCurrentItem(3);
+        }else{
+            UpdateUtil.checkForUpdateBean(this);
+            checkPushStatue();
+        }
         checkPushStatue();
         //注册广播接收器
         IntentFilter filter = new IntentFilter();
@@ -84,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
         //注销接收器
         unregisterReceiver(mReceiver);
     }
+
+
 
     private void checkPushStatue()
     {

@@ -29,6 +29,11 @@
             android:textStyle="bold"/>
     </RelativeLayout>
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D5D5D5"
+        android:layout_below="@id/shake_activity_bar_rl"/>
+    <TextView
         android:id="@+id/shake_content_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

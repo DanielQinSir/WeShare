@@ -91,7 +91,6 @@ public class HomeListDetailTwo extends AppCompatActivity implements View.OnClick
         fragments.add(UserCommentFragment.newInstance(pid));
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
