@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <ImageView
+            android:id="@+id/local_sale_detail_listview_item_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/default_image"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:id="@+id/local_sale_detail_listview_item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/local_sale_detail_listview_item_iv"
+            android:layout_toRightOf="@id/local_sale_detail_listview_item_iv"
+            android:layout_marginLeft="25dp"
+            android:text="万佛湖有机鱼头 约1000g"
+            android:layout_marginRight="35dp"
+            android:textSize="19sp"/>
+        <TextView
+            android:id="@+id/local_sale_detail_listview_item_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/local_sale_detail_listview_item_name_tv"
+            android:layout_below="@id/local_sale_detail_listview_item_name_tv"
+            android:text="¥26.80"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:textColor="#FF9900"
+            />
+        <TextView
+            android:id="@+id/local_sale_detail_listview_item_marketprice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/local_sale_detail_listview_item_name_tv"
+            android:layout_alignBottom="@id/local_sale_detail_listview_item_iv"
+            android:text="¥49.80"
+            android:textSize="16sp"
+            android:textColor="#999999"
+            />
+        <TextView
+            android:layout_width="52dp"
+            android:layout_height="1dp"
+            android:background="#999999"
+            android:layout_alignBottom="@id/local_sale_detail_listview_item_iv"
+            android:layout_alignLeft="@id/local_sale_detail_listview_item_name_tv"
+            android:layout_marginBottom="10dp"
+            />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/item_grid_float_shopping_cart_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

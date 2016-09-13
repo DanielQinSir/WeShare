@@ -15,16 +15,27 @@
             android:layout_height="wrap_content"
             android:numStars="5"
             android:stepSize="1"
+            android:isIndicator="true"
            />
+        <TextView
+            android:id="@+id/comment_listview_item2_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="7dp"
+            android:text="OK"
+            android:layout_below="@id/comment_listview_item2_ratingbar"
+            />
         <TextView
             android:id="@+id/comment_listview_item2_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/comment_listview_item2_ratingbar"
-            android:layout_below="@+id/comment_listview_item2_ratingbar"
+            android:layout_below="@+id/comment_listview_item2_content_tv"
             android:text="dassdaf31"
+            android:layout_marginTop="10dp"
             android:textColor="#D5D5D5"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
         <TextView
             android:id="@+id/comment_listview_item2_time_tv"
             android:layout_width="wrap_content"
@@ -33,7 +44,7 @@
             android:layout_alignParentRight="true"
             android:text="2016/09/07 10:55"
             android:textColor="#D5D5D5"
-            android:textSize="20sp"
+            android:textSize="18sp"
             />
     </RelativeLayout>
     <TextView

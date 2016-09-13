@@ -27,6 +27,10 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D5D5D5"/>
 <CalendarView
     android:id="@+id/signin_activity_calendar_cv"
     android:layout_width="match_parent"

@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textSize="16sp"
-            android:text="鸭胗 约300g"
             />
         <TextView
             android:id="@+id/product_fragment_listview_item_content"
@@ -42,39 +41,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textSize="15sp"
-            android:text="肉质紧密，老少皆宜的佳肴珍品"
             android:textColor="#FFAE33"
             android:layout_marginRight="30dp"/>
         <RelativeLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/product_fragment_listview_item_price"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-            <TextView
-                android:id="@+id/product_fragment_listview_item_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¥8.00"
-                android:textSize="28sp"
-                android:textColor="#FFA825"/>
-            <TextView
-                android:id="@+id/product_fragment_listview_item_marketprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="¥10.00"
-                android:textSize="15sp"
-                android:layout_toRightOf="@id/product_fragment_listview_item_price"
-                android:layout_alignBottom="@id/product_fragment_listview_item_price"
-                android:textColor="#9C9C9C"
-                />
-            <TextView
-                android:layout_width="52dp"
-                android:layout_height="1dp"
-                android:background="#9C9C9C"
-                android:layout_toRightOf="@id/product_fragment_listview_item_price"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="27dp"/>
-        </RelativeLayout>
+            android:textSize="28sp"
+            android:textColor="#FFA825"/>
+        <TextView
+            android:id="@+id/product_fragment_listview_item_marketprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/product_fragment_listview_item_price"
+            android:layout_alignBottom="@id/product_fragment_listview_item_price"
+            android:textColor="#9C9C9C"
+            />
+        <TextView
+            android:layout_width="52dp"
+            android:layout_height="1dp"
+            android:background="#9C9C9C"
+            android:layout_toRightOf="@id/product_fragment_listview_item_price"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="27dp"/>
+    </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -100,7 +96,6 @@
                     android:id="@+id/product_fragment_listview_item_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="约300g"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"/>
             </LinearLayout>
@@ -119,7 +114,6 @@
                     android:id="@+id/product_fragment_listview_item_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="安徽"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"/>
                 <TextView
@@ -133,7 +127,6 @@
                     android:id="@+id/product_fragment_listview_item_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="888"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"/>
             </LinearLayout>
@@ -153,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:text="每日上午10:00至晚21:00间订单，次日上午配送；每日晚晚21:00至次日上午10:00间订单，次日下午或晚间配送。"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"/>
             </LinearLayout>

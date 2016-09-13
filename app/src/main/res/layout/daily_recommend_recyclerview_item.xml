@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_margin="3dp">
+<ImageView
+    android:id="@+id/daily_recommend_recyclerview_item_iv"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:src="@drawable/default_image"
+    android:background="#FFFFFF"
+    android:scaleType="fitXY"
+    />
+    <TextView
+        android:id="@+id/daily_recommend_recyclerview_flag_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="暂时无货"
+        android:textSize="17sp"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        android:layout_alignBottom="@id/daily_recommend_recyclerview_item_iv"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:background="#FFFFFF"
+    android:layout_below="@id/daily_recommend_recyclerview_item_iv">
+    <LinearLayout
+        android:id="@+id/daily_recommend_LL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="产地："
+            android:textSize="16sp"
+            android:textColor="#999999"/>
+        <TextView
+            android:id="@+id/daily_recommend_recyclerview_item_address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合肥"
+            android:textSize="16sp"
+            android:textColor="#999999"
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/daily_recommend_RL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@id/daily_recommend_LL">
+        <TextView
+            android:id="@+id/daily_recommend_recyclerview_item__price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥8.00"
+            android:textSize="18sp"
+            android:textColor="#FFA825"/>
+        <TextView
+            android:id="@+id/daily_recommend_recyclerview_item_marketprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="¥10.00"
+            android:textSize="14sp"
+            android:layout_toRightOf="@id/daily_recommend_recyclerview_item__price"
+            android:layout_alignBottom="@id/daily_recommend_recyclerview_item__price"
+            android:textColor="#9C9C9C"
+            />
+        <TextView
+            android:layout_width="42dp"
+            android:layout_height="1dp"
+            android:background="#9C9C9C"
+            android:layout_toRightOf="@id/daily_recommend_recyclerview_item__price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"/>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/daily_recommend_recyclerview_item_shoppingcart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/daily_recommend_LL"
+        android:scaleType="fitXY"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/item_grid_float_shopping_cart_icon"/>
+    <TextView
+        android:id="@+id/daily_recommend_recyclerview_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="蒜头 约200g"
+        android:textSize="17sp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@+id/daily_recommend_RL"
+        />
+</RelativeLayout>
+
+
+</RelativeLayout>

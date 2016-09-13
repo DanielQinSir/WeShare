@@ -7,6 +7,7 @@
        android:layout_height="?actionBarSize"
        android:gravity="center_vertical"
        android:padding="10dp"
+       android:background="#F8F8F8"
        >
        <ImageView
            android:id="@+id/home_share_iv"
@@ -16,6 +17,7 @@
            android:scaleType="fitXY"
            android:layout_centerVertical="true"/>
         <Button
+            android:id="@+id/home_search_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="搜索享享商品"
@@ -26,13 +28,26 @@
             android:paddingLeft="5dp"
             android:background="@drawable/gray_round_shape"
             android:textColor="#999999"
+            android:layout_marginRight="70dp"
             />
+       <TextView
+           android:id="@+id/home_address_tv"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="5dp"
+           android:layout_marginLeft="5dp"
+           android:layout_centerVertical="true"
+           android:text="安徽大学"
+           android:textColor="#88CC00"
+           android:ellipsize="end"
+           android:singleLine="true"
+           />
    </RelativeLayout>
 
 <ListView
     android:id="@+id/home_listview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="5dp"
    />
 </LinearLayout>
