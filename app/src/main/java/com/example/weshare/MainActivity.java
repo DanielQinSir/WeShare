@@ -15,8 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -178,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             }
         });
 
-        my_viewpager.setOffscreenPageLimit(0);
+        my_viewpager.setOffscreenPageLimit(5);
     }
 
     private void initDatas()
@@ -249,11 +247,10 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             }
             else
             {
-
-                MainActivity.this.finish();
+                finish();
 //                onDestroy();
 //                System.exit(0);
-                //android.os.Process.killProcess(android.os.Process.myPid());
+//                android.os.Process.killProcess(android.os.Process.myPid());
 //                ActivityManager activityMgr=(ActivityManager)MainActivity.this.getSystemService(ACTIVITY_SERVICE);
 //                activityMgr.restartPackage(getPackageName());
             }
@@ -303,7 +300,5 @@ public class MainActivity extends AppCompatActivity implements IMyCallBack
             }
             return super.getItemPosition(object);
         }
-
-
     }
 }

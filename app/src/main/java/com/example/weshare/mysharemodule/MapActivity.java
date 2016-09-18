@@ -1,5 +1,6 @@
 package com.example.weshare.mysharemodule;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.example.weshare.R;
 
@@ -43,7 +45,7 @@ public class MapActivity extends AppCompatActivity
 
     private void markMap()
     {
-        LatLng latLng = new LatLng(117.242741, 31.808785);
+        LatLng latLng = new LatLng(31.808785, 117.242741);
         BitmapDescriptor bitmap = BitmapDescriptorFactory
                 .fromResource(R.drawable.icon_gcoding);
 //构建MarkerOption，用于在地图上添加Marker
@@ -52,6 +54,28 @@ public class MapActivity extends AppCompatActivity
                 .icon(bitmap);
 //在地图上添加Marker，并显示
         mMap.addOverlay(option);
+
+        TextOptions textOptions = new TextOptions();
+
+        textOptions.fontColor(0x60ff0000)//设置字体颜色
+                .text("  享享社区在这里")//文字内容
+                .position(latLng)//位置
+                .fontSize(33)//字体大小
+                .typeface(Typeface.SERIF)//字体
+                .rotate(0);//旋转
+
+        mMap.addOverlay(textOptions);
+
+        //定义地图状态
+        MapStatus mMapStatus = new MapStatus.Builder()
+                .target(latLng)
+                .zoom(18)
+                .build();
+        //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+
+        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+        //改变地图状态
+        mMap.setMapStatus(mMapStatusUpdate);
     }
 
     private void initView()
@@ -67,19 +91,6 @@ public class MapActivity extends AppCompatActivity
         mMap = mMapActivityMv.getMap();
         mMap.setMaxAndMinZoomLevel(19, 16);
 
-        //设定中心点坐标
-
-        LatLng cenpt = new LatLng(117.242741, 31.808785);
-        //定义地图状态
-        MapStatus mMapStatus = new MapStatus.Builder()
-                .target(cenpt)
-                .zoom(18)
-                .build();
-        //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
-
-        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
-        //改变地图状态
-        mMap.setMapStatus(mMapStatusUpdate);
     }
 
     @Override

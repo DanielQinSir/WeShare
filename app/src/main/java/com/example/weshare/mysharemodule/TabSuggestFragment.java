@@ -127,6 +127,7 @@ public class TabSuggestFragment extends Fragment
                 }
             }
         });
+        mTabSuggestSubmitBtn.setEnabled(false);
         mGridViewAdapter = new GridViewAdapter();
         mTabSuggestImageGv.setAdapter(mGridViewAdapter);
         return view;

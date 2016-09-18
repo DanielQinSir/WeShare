@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
 import com.example.weshare.databean.AssortExpandableListBean;
-import com.example.weshare.homepagemodule.CustomRecyclerView;
 import com.example.weshare.homepagemodule.SearchActivity;
 import com.example.weshare.utils.HttpServiceUtil;
 
@@ -39,7 +37,6 @@ import retrofit2.Response;
  * Created by Administrator on 2016/9/5.
  */
 public class AssortFragment extends Fragment {
-    private static final String TAG ="androidxxx" ;
     @BindView(R.id.assort_search_btn)
     Button assortSearchBtn;
     @BindView(R.id.assort_search_exlistview)
@@ -62,7 +59,6 @@ public class AssortFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        Log.d(TAG, "onCreate: 0");
     }
 
     @Nullable
@@ -72,7 +68,6 @@ public class AssortFragment extends Fragment {
         ButterKnife.bind(this, view);
         initview();
         loadDatas();
-        Log.d(TAG, "onCreateView: 1");
         return view;
     }
 
@@ -105,9 +100,9 @@ public class AssortFragment extends Fragment {
                     for (int i = 0; i <keys.size(); i++) {
                         assortSearchExlistview.expandGroup(i);
                     }
-                  //  assortSearchExlistview.deferNotifyDataSetChanged();
+                    //  assortSearchExlistview.deferNotifyDataSetChanged();
                     adapter.notifyDataSetChanged();
-                   // adapter2.notifyDataSetChanged();
+                    // adapter2.notifyDataSetChanged();
                 }
 
 
@@ -123,7 +118,7 @@ public class AssortFragment extends Fragment {
 
     private void initview() {
         clearDatas();
-       // adapter = new AssortExpandableListViewAdapter();
+        // adapter = new AssortExpandableListViewAdapter();
         assortSearchExlistview.setAdapter(adapter);
         assortSearchExlistview.setGroupIndicator(null);
         assortSearchExlistview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -153,32 +148,27 @@ public class AssortFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause: ");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop: ");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d(TAG, "onDestroyView: 2");
 
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy: 3");
     }
 
     class AssortExpandableListViewAdapter extends BaseExpandableListAdapter{
@@ -238,13 +228,13 @@ public class AssortFragment extends Fragment {
             }
             return view;
         }
-            class GroupViewHolder {
+        class GroupViewHolder {
 
-                public final TextView group_item_name;
+            public final TextView group_item_name;
 
-                public GroupViewHolder(View view){
-                    view.setTag(this);
-                    group_item_name = (TextView) view.findViewById(R.id.assort_exlistview_group_item_name_tv);
+            public GroupViewHolder(View view){
+                view.setTag(this);
+                group_item_name = (TextView) view.findViewById(R.id.assort_exlistview_group_item_name_tv);
             }
         }
 

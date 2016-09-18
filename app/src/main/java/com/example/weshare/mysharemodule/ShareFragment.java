@@ -63,15 +63,35 @@ public class ShareFragment extends Fragment
                     goToActivityForResult(LoginActivity.class);
                     break;
                 case R.id.myshare_lv_item_allorder_tv:
+                    if (MyApplication.sUser == null)
+                    {
+                        goToActivityForResult(LoginActivity.class);
+                        return;
+                    }
                     goToMyOrderTab(1);
                     break;
                 case R.id.myshare_lv_item_uncompleted_tv:
+                    if (MyApplication.sUser == null)
+                    {
+                        goToActivityForResult(LoginActivity.class);
+                        return;
+                    }
                     goToMyOrderTab(2);
                     break;
                 case R.id.myshare_lv_item_completed_tv:
+                    if (MyApplication.sUser == null)
+                    {
+                        goToActivityForResult(LoginActivity.class);
+                        return;
+                    }
                     goToMyOrderTab(3);
                     break;
                 case R.id.myshare_lv_item_afterservice_tv:
+                    if (MyApplication.sUser == null)
+                    {
+                        goToActivityForResult(LoginActivity.class);
+                        return;
+                    }
                     Toast.makeText(mContext, "售后不在服务区!", Toast.LENGTH_SHORT).show();
                     // TODO: 2016/9/10
                     break;
@@ -85,7 +105,7 @@ public class ShareFragment extends Fragment
                                 goToActivityForResult(LoginActivity.class);
                                 return;
                             }
-                            Toast.makeText(mContext, "未查询到订单", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "未查询到订单!", Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
                             if (MyApplication.sUser == null)
@@ -145,6 +165,7 @@ public class ShareFragment extends Fragment
         }
     };
     private MyshareListviewAdapter mMyshareListviewAdapter;
+    private TextView tv;
 
     public static ShareFragment newInstance()
     {
@@ -158,6 +179,14 @@ public class ShareFragment extends Fragment
         mContext = getContext();
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        tv.setText(MyApplication.sUser == null ? "您尚未登录" : "欢迎您");
+        mMyshareLoginBtn.setText(MyApplication.sUser == null ? "登录/注册" : "已登录(" + MyApplication.sUser.getUsername() + ")");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -167,6 +196,8 @@ public class ShareFragment extends Fragment
         mMyshareBarSettingsIv.setOnClickListener(mlistener);
         View headView = LayoutInflater.from(mContext).inflate(R.layout.myshare_head_view, null, false);
         mMyshareLoginBtn = (Button) headView.findViewById(R.id.myshare_login_btn);
+        tv = (TextView) headView.findViewById(R.id.myshare_tv);
+        tv.setText(MyApplication.sUser == null ? "您尚未登录" : "欢迎您");
         mMyshareLoginBtn.setText(MyApplication.sUser == null ? "登录/注册" : "已登录(" + MyApplication.sUser.getUsername() + ")");
         mMyshareLoginBtn.setOnClickListener(mlistener);
         mMyshareBarScanIv.setOnClickListener(mlistener);
@@ -195,14 +226,17 @@ public class ShareFragment extends Fragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        switch (requestCode)
+        if (data != null)
         {
-            case 1:
-                reFreShFragment(data);
-                break;
-            default:
-                showScanResult(requestCode, resultCode, data);
-                break;
+            switch (requestCode)
+            {
+                case 1:
+                    reFreShFragment(data);
+                    break;
+                default:
+                    showScanResult(requestCode, resultCode, data);
+                    break;
+            }
         }
     }
 
@@ -260,6 +294,7 @@ public class ShareFragment extends Fragment
         {
             //刷新视图
             mMyshareLoginBtn.setText("已登录(" + MyApplication.sUser.getUsername() + ")");
+            tv.setText("已登录");
         }
     }
 

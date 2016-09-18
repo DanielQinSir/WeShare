@@ -80,7 +80,7 @@
             >
 
             <ImageView
-                android:id="@+id/cart_item_numadd_iv"
+                android:id="@+id/cart_item_numdec_iv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
@@ -94,14 +94,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/cart_item_numadd_iv"
+                android:layout_toRightOf="@id/cart_item_numdec_iv"
                 android:background="#FFFFFF"
                 android:gravity="center"
                 android:text="1"
                 android:textSize="18sp"/>
 
             <ImageView
-                android:id="@+id/cart_item_numdec_iv"
+                android:id="@+id/cart_item_numadd_iv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"

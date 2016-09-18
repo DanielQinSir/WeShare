@@ -43,6 +43,7 @@ public class SignInActivity extends AppCompatActivity
             }
         }
     };
+    private Calendar mCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,7 +51,7 @@ public class SignInActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
-
+        mCalendar = Calendar.getInstance();
         initView();
     }
 
@@ -64,7 +65,7 @@ public class SignInActivity extends AppCompatActivity
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth)
             {
-                if (year != Calendar.YEAR || month + 1 != Calendar.MONTH || dayOfMonth != Calendar.DAY_OF_MONTH)
+                if (year != mCalendar.get(Calendar.YEAR) || month != mCalendar.get(Calendar.MONTH) || dayOfMonth != mCalendar.get(Calendar.DATE))
                 {
                     String date = year + "年" + (month + 1) + "月" + dayOfMonth + "日";
                     Toast.makeText(SignInActivity.this, "您选择了" + date + ",但是只能签到今天哦!", Toast.LENGTH_LONG).show();

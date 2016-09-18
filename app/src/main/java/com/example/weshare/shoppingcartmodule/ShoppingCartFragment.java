@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +71,30 @@ public class ShoppingCartFragment extends BaseFragment
     private List<Item> isChecked;
     private static float totalMoney = 0;
     private static int totalKinds = 0;
+    private Handler mHandler = new Handler(new Handler.Callback()
+    {
+        @Override
+        public boolean handleMessage(Message message)
+        {
+            switch (message.what)
+            {
+                case 1:
+                    if (totalMoney == 0)
+                    {
+                        mShoppingcartLoginedTotalshowRl.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        mShoppingcartLoginedTotalshowRl.setVisibility(View.VISIBLE);
+                        mShoppingcartLoginedTotalpriceTv.setText("  ¥" + totalMoney);
+                        mShoppingcartLoginedPayBtn.setText("结算(" + totalKinds + ")");
+                    }
+                    break;
+            }
+            return true;
+        }
+    });
+
     private View.OnClickListener mlistener = new View.OnClickListener()
     {
         @Override
@@ -110,7 +136,8 @@ public class ShoppingCartFragment extends BaseFragment
                     reFreshAdapter();
                     break;
                 case R.id.cart_item_delete_iv:
-                    mData.remove(view.getTag());
+                    int position3 = (int) view.getTag();
+                    mData.remove(position3);
                     reFreshAdapter();
                     break;
 
@@ -183,14 +210,6 @@ public class ShoppingCartFragment extends BaseFragment
                         totalKinds = 0;
                     }
                     reFreshAdapter();
-                }
-            });
-            mShoppingcartLoginedCartLv.setOnItemClickListener(new AdapterView.OnItemClickListener()
-            {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-                {
-
                 }
             });
             mShoppingcartLoginedPayBtn.setOnClickListener(mlistener);
@@ -289,6 +308,13 @@ public class ShoppingCartFragment extends BaseFragment
         }
 
         @Override
+        public void notifyDataSetChanged()
+        {
+            super.notifyDataSetChanged();
+            mHandler.sendEmptyMessage(1);
+        }
+
+        @Override
         public View getView(final int i, View view, ViewGroup viewGroup)
         {
             View itemView = view;
@@ -367,17 +393,6 @@ public class ShoppingCartFragment extends BaseFragment
         totalMoney = 0;
         totalKinds = 0;
         mCartListViewAdapter.notifyDataSetChanged();
-        if (totalMoney == 0)
-        {
-            mShoppingcartLoginedTotalshowRl.setVisibility(View.GONE);
-            return;
-        }
-        else
-        {
-            mShoppingcartLoginedTotalshowRl.setVisibility(View.VISIBLE);
-            mShoppingcartLoginedTotalpriceTv.setText("  ¥" + totalMoney);
-            mShoppingcartLoginedPayBtn.setText("结算(" + totalKinds + ")");
-        }
     }
 
     class ViewHolder

@@ -29,73 +29,85 @@
             android:textStyle="bold"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/invite_bg_img">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/invite_red_packet"/>
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="¥10.00"
-        android:textColor="#f00"
-        android:textSize="25sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="向好友派发优惠红包,好友领取并成功下单,您将获得优惠红包!"/>
-
-    <Button
-        android:id="@+id/sharewithfriends_share_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="#ff9900"
-        android:text="分享福利"
-        android:textColor="#fff"
-        android:textSize="20sp"/>
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/sharewithfriends_rlues_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="活动规则"
-            android:textColor="#0f0"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/sharewithfriends_rlues_title_cb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:background="@drawable/sharewithfriends_cb_selector"
-            android:layout_toRightOf="@id/sharewithfriends_rlues_title"
-            android:layout_marginLeft="5dp"
-            />
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/sharewithfriends_rlues_content_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:visibility="gone"
-        android:text="规则一:\n规则二:\n规则三:\n规则四:\n"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/invite_bg_img">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/invite_red_packet"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="¥10.00"
+                android:textColor="#f00"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="向好友派发优惠红包,好友领取并成功下单,您将获得优惠红包!"/>
+
+            <Button
+                android:id="@+id/sharewithfriends_share_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="#ff9900"
+                android:text="分享福利"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/sharewithfriends_rlues_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="活动规则"
+                    android:textColor="#0f0"
+                    />
+
+                <CheckBox
+                    android:id="@+id/sharewithfriends_rlues_title_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/sharewithfriends_rlues_title"
+                    android:background="@drawable/sharewithfriends_cb_selector"
+                    android:button="@null"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/sharewithfriends_rlues_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="规则一:\n规则二:\n规则三:\n规则四:\n"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
