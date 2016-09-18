@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.weshare.R;
 import com.example.weshare.databean.AssortExpandableListBean;
 import com.example.weshare.homepagemodule.CustomRecyclerView;
+import com.example.weshare.homepagemodule.SearchActivity;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import java.util.ArrayList;
@@ -52,7 +53,6 @@ public class AssortFragment extends Fragment {
     private List<String> keys = new ArrayList<>();
     private List<String> indexs = new ArrayList<>();
     private Map<String,List<AssortExpandableListBean.ListBean.SecondBean>> assort_map = new HashMap<>();
-
 
     public static AssortFragment newInstance() {
         return new AssortFragment();
@@ -135,7 +135,7 @@ public class AssortFragment extends Fragment {
         assortSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                startActivity(new Intent(mContext,SearchActivity.class));
             }
         });
 

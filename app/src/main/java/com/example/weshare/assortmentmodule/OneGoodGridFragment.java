@@ -96,7 +96,6 @@ public class OneGoodGridFragment extends Fragment {
 
     class GridRecyclerViewAdapter2 extends RecyclerView.Adapter<GridRecyclerViewAdapter2.GridViewHolder>{
 
-
         @Override
         public GridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.daily_recommend_recyclerview_item,parent,false);

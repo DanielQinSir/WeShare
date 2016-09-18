@@ -154,15 +154,20 @@ public class TimeLimitedSaleActivity extends AppCompatActivity {
                 viewHolder.time_name_tv.setText(product_list.get(position).getPname());
                 viewHolder.time_price_tv.setText("¥"+product_list.get(position).getPromote_price());
                 viewHolder.time_marketprice_tv.setText("¥"+product_list.get(position).getPrice());
-                float discount = Float.parseFloat(product_list.get(position).getPromote_price())*100/Float.parseFloat(product_list.get(position).getPrice());
-                viewHolder.time_discount_btn.setText(discount+"");
+                int discount = Math.round(Float.parseFloat(product_list.get(position).getPromote_price())*100/Float.parseFloat(product_list.get(position).getPrice()));
+                float discount2 = (float) discount/10;
+                viewHolder.time_discount_btn.setText(discount2+"折");
                 viewHolder.time_limited_tv.setText("限购"+product_list.get(position).getLimit_amount()+"份");
                 int percentage = Integer.parseInt(product_list.get(position).getSales())*100/Integer.parseInt(product_list.get(position).getAmount());
-                viewHolder.time_havesold_tv.setText("现已抢购"+percentage+"%");
+                viewHolder.time_havesold_tv.setText("已抢购"+percentage+"%");
                 if(product_list.get(position).getSales().equals(product_list.get(position).getAmount())){
-                    viewHolder.time_havesold_tv.setText("现已抢购100%");
+                    viewHolder.time_havesold_tv.setText("已抢购100%");
                     viewHolder.time_havesold_tv.setBackgroundResource(R.drawable.promotion_over);
                     viewHolder.time_resttime_tv.setVisibility(View.GONE);
+                }else{
+                    viewHolder.time_havesold_tv.setText("已抢购"+percentage+"%");
+                    viewHolder.time_havesold_tv.setBackgroundResource(R.drawable.immediately_buy_new);
+                    viewHolder.time_resttime_tv.setVisibility(View.VISIBLE);
                 }
 
                 String endtime = product_list.get(position).getLimit_etime();
@@ -197,6 +202,7 @@ public class TimeLimitedSaleActivity extends AppCompatActivity {
                 time_discount_btn = (Button) view.findViewById(R.id.timelimited_listview_discount_btn);
                 time_limited_tv = (TextView) view.findViewById(R.id.timelimited_listview_limited_tv);
                 time_havesold_tv = (TextView) view.findViewById(R.id.timelimited_listview_havesold_tv);
+                view.setOnClickListener(this);
             }
 
             @Override
@@ -207,8 +213,6 @@ public class TimeLimitedSaleActivity extends AppCompatActivity {
             }
         }
 
-        class TimeThread extends Thread{
 
-        }
     }
 }

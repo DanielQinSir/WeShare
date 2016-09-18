@@ -113,7 +113,6 @@ public class AllGoodsListFragment extends Fragment{
                 holder.all_goods_marketprice_tv.setText("¥"+goods_list.get(position).getMarket_price());
                 holder.all_goods_address_tv.setText(goods_list.get(position).getMember_name());
             }
-
         }
 
         @Override

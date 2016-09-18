@@ -177,4 +177,8 @@ public interface HttpService
     @FormUrlEncoded
     @POST("/mobile/control/index/new_special_area_info.php")//获取营养推荐详情
     Call<NutritionRecommendBean> getNutritionRecommendInfo(@Field("type")int type,@Field("sid")String sid);
+
+    @FormUrlEncoded
+    @POST("/mobile/search.php")
+    Call<AssortExpandListAllGoodsBean> getSearchInfo(@Field("length") String length,@Field("sid")String sid,@Field("index") String index,@Field("keyword") String keyword);
 }

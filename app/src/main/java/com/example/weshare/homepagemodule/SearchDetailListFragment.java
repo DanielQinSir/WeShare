@@ -1,4 +1,4 @@
-package com.example.weshare.assortmentmodule;
+package com.example.weshare.homepagemodule;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
+import com.example.weshare.assortmentmodule.AllGoodsListFragment;
 import com.example.weshare.databean.AssortExpandListAllGoodsBean;
-import com.example.weshare.databean.AssortExpandableListOneGoodBean;
-import com.example.weshare.homepagemodule.HomeListDetailTwo;
 import com.example.weshare.utils.HttpServiceUtil;
 
 import java.util.ArrayList;
@@ -28,25 +27,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Administrator on 2016/9/14.
+ * Created by Administrator on 2016/9/18.
  */
-public class OneGoodListFragment extends Fragment{
-
+public class SearchDetailListFragment extends Fragment {
     private Context mContext;
     private RecyclerView list_recyclerview;
-    private String catid;
+    private ListRecyclerViewAdapter adapter;
+    private String content;
     private Bundle bd;
-    private ListRecyclerViewAdapter2 adapter2;
-    private List<AssortExpandableListOneGoodBean.GoodslistBean> goods_list = new ArrayList<>();
+    private List<AssortExpandListAllGoodsBean.GoodslistBean> goods_list = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private TextView assort_emptyview;
 
-
-    public static OneGoodListFragment newInstance(String catid) {
+    public static SearchDetailListFragment newInstance(String content) {
 
         Bundle args = new Bundle();
-        args.putString("catid",catid);
-        OneGoodListFragment fragment = new OneGoodListFragment();
+        args.putString("content",content);
+        SearchDetailListFragment fragment = new SearchDetailListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +52,8 @@ public class OneGoodListFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        bd = getArguments();
-        catid = bd.getString("catid");
+        bd= getArguments();
+        content = bd.getString("content");
     }
 
     @Nullable
@@ -68,33 +65,34 @@ public class OneGoodListFragment extends Fragment{
         linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_recyclerview.setLayoutManager(linearLayoutManager);
-        adapter2 = new ListRecyclerViewAdapter2();
-        list_recyclerview.setAdapter(adapter2);
+        adapter = new ListRecyclerViewAdapter();
+        list_recyclerview.setAdapter(adapter);
         loadDatas();
         return view;
     }
 
     private void loadDatas() {
-        HttpServiceUtil.init().getAssortOneGoodBean("get_cat",catid,HttpServiceUtil.SID).enqueue(new Callback<AssortExpandableListOneGoodBean>() {
+        HttpServiceUtil.init().getSearchInfo("",HttpServiceUtil.SID,"",content).enqueue(new Callback<AssortExpandListAllGoodsBean>() {
             @Override
-            public void onResponse(Call<AssortExpandableListOneGoodBean> call, Response<AssortExpandableListOneGoodBean> response) {
+            public void onResponse(Call<AssortExpandListAllGoodsBean> call, Response<AssortExpandListAllGoodsBean> response) {
                 goods_list = response.body().getGoodslist();
                 if(goods_list!=null){
-                    adapter2.notifyDataSetChanged();
-                }
-                if(goods_list==null){
+                    adapter.notifyDataSetChanged();
+                }else{
                     assort_emptyview.setVisibility(View.VISIBLE);
                 }
+
             }
 
             @Override
-            public void onFailure(Call<AssortExpandableListOneGoodBean> call, Throwable t) {
+            public void onFailure(Call<AssortExpandListAllGoodsBean> call, Throwable t) {
 
             }
         });
     }
 
-    public class ListRecyclerViewAdapter2 extends RecyclerView.Adapter<ListRecyclerViewAdapter2.ListViewHolder>{
+    public class ListRecyclerViewAdapter extends RecyclerView.Adapter<ListRecyclerViewAdapter.ListViewHolder>{
+
 
         @Override
         public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -113,7 +111,6 @@ public class OneGoodListFragment extends Fragment{
                 holder.all_goods_marketprice_tv.setText("¥"+goods_list.get(position).getMarket_price());
                 holder.all_goods_address_tv.setText(goods_list.get(position).getMember_name());
             }
-
         }
 
         @Override
@@ -147,8 +144,6 @@ public class OneGoodListFragment extends Fragment{
             }
         }
     }
-
-
 
 
 }

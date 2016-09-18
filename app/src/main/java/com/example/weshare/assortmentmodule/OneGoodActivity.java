@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.example.weshare.MainActivity;
 import com.example.weshare.MyApplication;
 import com.example.weshare.R;
+import com.example.weshare.homepagemodule.SearchActivity;
 import com.example.weshare.shoppingcartmodule.LoginActivity;
 
 import butterknife.BindView;
@@ -66,7 +67,6 @@ public class OneGoodActivity extends AppCompatActivity {
 
         if (!fragment.isAdded()) {
 
-
             fragmentTransaction.add(R.id.assort_onegoods_framelayout,fragment);
             /**
              * 将Fragment添加在回退栈中
@@ -98,7 +98,7 @@ public class OneGoodActivity extends AppCompatActivity {
         assortOnegoodsSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                startActivity(new Intent(mContext,SearchActivity.class));
             }
         });
         assortOnegoodsChangeIv.setOnClickListener(new View.OnClickListener() {

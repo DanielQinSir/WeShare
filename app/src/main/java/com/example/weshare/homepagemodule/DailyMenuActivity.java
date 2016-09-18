@@ -44,6 +44,7 @@ public class DailyMenuActivity extends AppCompatActivity {
     Button dailyMenuShoppingcartNumIv;
 
     private Context mContext;
+
     private List<DailyMenuBean.MenuBean> menu_list = new ArrayList<>();
     private List<DailyMenuBean.MenuBean.ProductBean> product_list = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
@@ -159,6 +160,7 @@ public class DailyMenuActivity extends AppCompatActivity {
 
         class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             private int position;
+
             private String list_item_id;
             private final TextView menu_list_title_tv;
             private final RelativeLayout menu_RL2;
@@ -199,10 +201,13 @@ public class DailyMenuActivity extends AppCompatActivity {
                 menu_RL1.setOnClickListener(this);
                 menu_RL2.setOnClickListener(this);
 
+                adapter = new MenuListAdapter();
+                menu_item_listview.setAdapter(adapter);
             }
 
             @Override
             public void onClick(View view) {
+
                 switch(view.getId()){
                     case R.id.menu_recyclerview_item_main_iv:
                         Intent i = new Intent(mContext,DailyMenuDetailActivity.class);
@@ -219,15 +224,22 @@ public class DailyMenuActivity extends AppCompatActivity {
                         startActivity(i2);
                         break;
                     case R.id.menu_list_item_RL2:
-                        menu_item_listview.setVisibility(View.VISIBLE);
-                        adapter = new MenuListAdapter();
-                        menu_item_listview.setAdapter(adapter);
-                        if(product_list!=null){
-                            adapter.notifyDataSetChanged();
-                        }
-                        menu_list_display_tv.setText("收起");
-                        menu_list_display_iv.setImageResource(R.drawable.display_btn2_proc);
+                        int num =1;
+                        if(num%2==1){
+                            menu_item_listview.setVisibility(View.VISIBLE);
 
+                            if(product_list!=null){
+                                adapter.notifyDataSetChanged();
+                            }
+                            menu_list_display_tv.setText("收起");
+                            menu_list_display_iv.setImageResource(R.drawable.display_btn2_proc);
+
+                        }else{
+                            menu_item_listview.setVisibility(View.GONE);
+                            menu_list_display_tv.setText("显示全部食材");
+                            menu_list_display_iv.setImageResource(R.drawable.display_btn);
+                        }
+                            num++;
                         break;
 
                 }

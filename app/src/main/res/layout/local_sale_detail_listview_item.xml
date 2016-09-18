@@ -60,6 +60,11 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D5D5D5"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

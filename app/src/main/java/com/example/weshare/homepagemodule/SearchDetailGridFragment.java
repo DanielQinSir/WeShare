@@ -1,4 +1,4 @@
-package com.example.weshare.assortmentmodule;
+package com.example.weshare.homepagemodule;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.databean.AssortExpandListAllGoodsBean;
-import com.example.weshare.homepagemodule.HomeListDetailTwo;
 import com.example.weshare.shoppingcartmodule.LoginActivity;
 import com.example.weshare.utils.HttpServiceUtil;
 
@@ -30,12 +29,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Administrator on 2016/9/13.
+ * Created by Administrator on 2016/9/18.
  */
-public class AllGoodsGridFragment extends Fragment{
-
+public class SearchDetailGridFragment extends Fragment {
     private Context mContext;
-    private String catid;
+    private String content;
     private Bundle bd;
     private RecyclerView grid_recyclerview;
     private GridRecyclerViewAdapter adapter;
@@ -44,10 +42,11 @@ public class AllGoodsGridFragment extends Fragment{
     private TextView assort_emptyview;
 
 
-    public static AllGoodsGridFragment newInstance(String catid) {
+    public static SearchDetailGridFragment newInstance(String content) {
+
         Bundle args = new Bundle();
-        args.putString("catid",catid);
-        AllGoodsGridFragment fragment = new AllGoodsGridFragment();
+        args.putString("content",content);
+        SearchDetailGridFragment fragment = new SearchDetailGridFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +56,7 @@ public class AllGoodsGridFragment extends Fragment{
         super.onCreate(savedInstanceState);
         mContext = getContext();
         bd = getArguments();
-        catid = bd.getString("catid");
+        content = bd.getString("content");
     }
 
     @Nullable
@@ -75,16 +74,16 @@ public class AllGoodsGridFragment extends Fragment{
     }
 
     private void loadDatas() {
-        HttpServiceUtil.init().getAssortAllGoodsBean(catid,HttpServiceUtil.SID).enqueue(new Callback<AssortExpandListAllGoodsBean>() {
+        HttpServiceUtil.init().getSearchInfo("",HttpServiceUtil.SID,"",content).enqueue(new Callback<AssortExpandListAllGoodsBean>() {
             @Override
             public void onResponse(Call<AssortExpandListAllGoodsBean> call, Response<AssortExpandListAllGoodsBean> response) {
                 goods_list = response.body().getGoodslist();
                 if(goods_list!=null){
                     adapter.notifyDataSetChanged();
-                }
-                if(goods_list==null){
+                }else{
                     assort_emptyview.setVisibility(View.VISIBLE);
                 }
+
             }
 
             @Override
@@ -93,7 +92,6 @@ public class AllGoodsGridFragment extends Fragment{
             }
         });
     }
-
 
     class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerViewAdapter.GridViewHolder>{
 
