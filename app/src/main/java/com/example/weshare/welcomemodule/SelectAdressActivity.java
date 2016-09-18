@@ -319,7 +319,7 @@ public class SelectAdressActivity extends AppCompatActivity
         public View getView(int i, View view, ViewGroup viewGroup)
         {
             TextView textView = new TextView(SelectAdressActivity.this);
-            textView.setTextColor(Color.RED);
+            textView.setTextColor(Color.parseColor("#88CC00"));
             textView.setTextSize(20);
             textView.setHeight(dip2px(30));
             textView.setPadding(10, 0, 10, 0);

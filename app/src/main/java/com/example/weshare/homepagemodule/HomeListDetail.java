@@ -96,10 +96,10 @@ public class HomeListDetail extends AppCompatActivity {
     private void initHeadView() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.home_list_detail_headview,null,false);
         home_list_detail_head_iv = (ImageView) view.findViewById(R.id.home_list_detail_head_iv);
-        if(detail_bean!=null){
+       /* if(detail_bean!=null){
             Glide.with(mContext).load(detail_bean.getDesc()).into(home_list_detail_head_iv);
             homeListDetailTitleTv.setText(detail_bean.getName());
-        }
+        }*/
         homeListDetailListview.addHeaderView(view);
     }
 

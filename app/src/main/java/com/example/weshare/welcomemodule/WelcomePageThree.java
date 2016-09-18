@@ -2,6 +2,7 @@ package com.example.weshare.welcomemodule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,7 +26,8 @@ public class WelcomePageThree extends AppCompatActivity {
     @BindView(R.id.welcomepagethree_iv)
     ImageView welcomepagethreeIv;
 
-    private String pic_url;
+    private Bitmap bm;
+    private String pic;
     private Context mContext;
 
     private Handler mhandler = new Handler(){
@@ -33,6 +35,7 @@ public class WelcomePageThree extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             startActivity(new Intent(WelcomePageThree.this, MainActivity.class));
+            finish();
         }
     };
 
@@ -43,15 +46,17 @@ public class WelcomePageThree extends AppCompatActivity {
         ButterKnife.bind(this);
         mContext=this;
         getIntentDatas();
-
-
     }
 
     private void getIntentDatas() {
        Intent i= getIntent();
-        pic_url = i.getStringExtra("pic");
-        Glide.with(mContext).load(pic_url).into(welcomepagethreeIv);
-        mhandler.sendEmptyMessageDelayed(1,2000);
+       // bm = i.getParcelableExtra("pic");
+        pic = i.getStringExtra("pic");
+        if(pic!=null){
+            Glide.with(mContext).load(pic).into(welcomepagethreeIv);
+           // welcomepagethreeIv.setImageBitmap(bm);
+        }
+        mhandler.sendEmptyMessageDelayed(1,2500);
     }
 
    /* private void getDatas() {

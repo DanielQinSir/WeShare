@@ -162,7 +162,7 @@ public class ClubFragment extends Fragment
             String tid = ad.getTid();
             ads.add(new ADbean(pic, tid));
         }
-        fragmentTransaction.replace(R.id.club_fragment_viewpager_fm, ViewPagerADFragment.newInstance(ads));
+        fragmentTransaction.add(R.id.club_fragment_viewpager_fm, ViewPagerADFragment.newInstance(ads));
         fragmentTransaction.commit();
     }
 

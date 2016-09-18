@@ -60,6 +60,7 @@ public class UserCommentFragment extends Fragment {
         View view = inflater.inflate(R.layout.user_comment_fragment, container, false);
         ButterKnife.bind(this, view);
         View view2 = inflater.inflate(R.layout.comment_listview_empty_view,container,false);
+        ((ViewGroup)comment_listview.getParent()).addView(view2);
         comment_listview.setEmptyView(view2);
         adapter = new CommentListAdapter();
         comment_listview.setAdapter(adapter);
@@ -97,7 +98,11 @@ public class UserCommentFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return list_bean==null?0:list_bean.size()+1;
+           if(list_bean==null||list_bean.size()==0){
+               return 0;
+           }else{
+               return list_bean.size()+1;
+           }
         }
 
         @Override

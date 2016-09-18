@@ -16,7 +16,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.weshare.MainActivity;
+import com.example.weshare.MyApplication;
 import com.example.weshare.R;
 import com.example.weshare.shoppingcartmodule.LoginActivity;
 
@@ -49,7 +52,7 @@ public class HomeListDetailTwo extends AppCompatActivity implements View.OnClick
     RelativeLayout homeListDetailtwoRL;
 
     private Context mContext;
-    private int i=1;
+    private int i;
     private String pid;
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments =new ArrayList<>();
@@ -75,6 +78,8 @@ public class HomeListDetailTwo extends AppCompatActivity implements View.OnClick
         homeListDetailtwoReduceIv.setOnClickListener(this);
         homeListDetailtwoAddIv.setOnClickListener(this);
         homeListDetailtwoShoppingBtn.setOnClickListener(this);
+        homeListDetailtwoShoppingcartIv.setOnClickListener(this);
+        homeListDetailtwoShoppingcartNumIv.setOnClickListener(this);
         homeListDetailtwoTablayout.setTabMode(TabLayout.MODE_FIXED);
         initDatas();
         adapter =new DetailPagerAdapter(getSupportFragmentManager());
@@ -98,7 +103,7 @@ public class HomeListDetailTwo extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.home_list_detailtwo_reduce_iv:
-                if(i>1){
+                if(i>0){
                     i=i-1;
                     homeListDetailtwoNumTv.setText(i+"");
                 }
@@ -110,8 +115,32 @@ public class HomeListDetailTwo extends AppCompatActivity implements View.OnClick
                 }
                 break;
             case R.id.home_list_detailtwo_shoppingcart_iv:
-                Intent intent =new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
+                if (MyApplication.sUser == null) {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                } else {
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.putExtra("flag", 1);
+                    startActivity(intent);
+                    finish();
+                }
+                break;
+            case R.id.home_list_detailtwo_shoppingcart_num_iv:
+                if (MyApplication.sUser == null) {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                } else {
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.putExtra("flag", 1);
+                    startActivity(intent);
+                    finish();
+                }
+                break;
+            case R.id.home_list_detailtwo_shopping_btn:
+                if (MyApplication.sUser == null) {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                } else {
+                    homeListDetailtwoShoppingcartNumIv.setText(i+"");
+                    Toast.makeText(mContext, "商品已添加到购物车~", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

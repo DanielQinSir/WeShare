@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.example.weshare.R;
 import com.example.weshare.databean.ProductIntroduceInfoBean;
 import com.example.weshare.utils.HttpServiceUtil;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
@@ -61,6 +63,18 @@ public class PictureDetailFragment extends Fragment {
         ButterKnife.bind(this,view);
         adapter = new PictureListViewAdapter();
         picture_detail_listview.setAdapter(adapter);
+        picture_detail_listview.setMode(PullToRefreshBase.Mode.PULL_DOWN_TO_REFRESH);
+        picture_detail_listview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+        });
         loadDatas();
         return view;
     }

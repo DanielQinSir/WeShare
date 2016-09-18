@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DailyRecommend extends AppCompatActivity {
+public class DailyRecommendActivity extends AppCompatActivity {
 
     @BindView(R.id.daily_recommend_back_iv)
     ImageView dailyRecommendBackIv;

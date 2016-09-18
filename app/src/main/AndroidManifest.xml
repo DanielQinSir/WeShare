@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weshare">
 
-
     <!-- <uses-permission android:name="android.permission.RESTART_PACKAGES" /> -->
     <!-- JPush -->
     <!-- Required -->
@@ -16,10 +15,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="com.example.weshare.permission.JPUSH_MESSAGE"/>
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.example.weshare.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- 摇一摇重力感应器 -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -27,35 +26,35 @@
 
     <!-- 百度地图 -->
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 用于读取手机当前的状态 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 访问网络，网络定位需要上网 -->
     <!-- SD卡读取权限，用户写入离线定位数据 -->
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- Zxing -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <!--sharedSDK-->
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- sharedSDK -->
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <!-- 蓝牙分享所需的权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".MyApplication"
@@ -71,7 +70,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".welcomemodule.WelcomePageTwo" />
         <activity android:name=".welcomemodule.WelcomePageThree" />
         <activity android:name=".homepagemodule.HomeListDetail" />
@@ -86,11 +87,10 @@
         <activity android:name=".shoppingcartmodule.RegistActivity" />
         <activity android:name=".welcomemodule.SelectAdressActivity" />
         <activity android:name=".shoppingcartmodule.FindPWDActivity" />
-        <activity android:name=".homepagemodule.DailyRecommend" />
+        <activity android:name=".homepagemodule.DailyRecommendActivity" />
         <activity android:name=".homepagemodule.LocalSale" />
         <activity android:name=".homepagemodule.LocalSaleDetail" />
-
-        <activity android:name=".mysharemodule.TakePictureActivity"/>
+        <activity android:name=".mysharemodule.TakePictureActivity" />
         <!-- alipay begin -->
 
         <activity
@@ -107,17 +107,18 @@
         <!-- alipay end -->
 
 
-        <!--shareSDK-->
+        <!-- shareSDK -->
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -125,6 +126,7 @@
             <!-- 调用新浪原生SDK，需要注册的回调activity -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -220,22 +222,26 @@
         <activity android:name=".homepagemodule.SignInActivity" />
         <activity android:name=".homepagemodule.NewGoodsActivity" />
         <activity android:name=".assortmentmodule.AllGoodsActivity" />
-        <activity android:name=".assortmentmodule.OneGoodActivity"></activity>
+        <activity android:name=".assortmentmodule.OneGoodActivity" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":remote" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="r59qOH3ciuNZ4fNHGjgiG8WnaDxrNe5S"/>
+            android:value="r59qOH3ciuNZ4fNHGjgiG8WnaDxrNe5S" />
 
-        <activity android:name=".mysharemodule.MapActivity">
-        </activity>
-        <activity android:name=".mysharemodule.HelpActivity">
-        </activity>
-        <activity android:name=".homepagemodule.ShareWithFriendsActivity">
-        </activity>
+        <activity android:name=".mysharemodule.MapActivity" />
+        <activity android:name=".mysharemodule.HelpActivity" />
+        <activity android:name=".homepagemodule.ShareWithFriendsActivity" />
+        <activity android:name=".homepagemodule.NutritionRecommendActivity" />
+        <activity android:name=".homepagemodule.DailyMenuActivity" />
+        <activity android:name=".homepagemodule.DailyMenuDetailActivity" />
+        <activity android:name=".homepagemodule.TimeLimitedSaleActivity" />
+        <activity android:name=".homepagemodule.SearchActivity" />
+        <activity android:name=".homepagemodule.SearchDetailActivity"></activity>
     </application>
 
 </manifest>

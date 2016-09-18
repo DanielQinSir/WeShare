@@ -16,11 +16,12 @@
             android:src="@drawable/back_green"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"/>
-        <EditText
+        <Button
             android:id="@+id/assort_allgoods_search_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="搜索享享商品"
+            android:text="搜索享享商品"
+            android:gravity="left|center_vertical"
             android:drawableLeft="@drawable/searcher_new_search_icon"
             android:layout_toRightOf="@id/assort_allgoods_back_iv"
             android:layout_marginLeft="10dp"
@@ -31,8 +32,8 @@
             />
         <ImageView
             android:id="@+id/assort_allgoods_change_iv"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
             android:src="@drawable/product_list_1"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -47,17 +48,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <FrameLayout
-            android:id="@+id/assort_allgoods_recyclerview"
+            android:id="@+id/assort_allgoods_framelayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/assort_RL"
             android:background="#EEEEEE"/>
-        <!--<android.support.v7.widget.RecyclerView
-            android:id="@+id/assort_allgoods_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EEEEEE"
-            android:layout_above="@+id/assort_RL"/>-->
+
         <RelativeLayout
             android:id="@id/assort_RL"
             android:layout_width="match_parent"

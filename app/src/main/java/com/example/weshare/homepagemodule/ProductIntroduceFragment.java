@@ -95,6 +95,7 @@ public class ProductIntroduceFragment extends Fragment {
     private void initView() {
         listadapter = new IntroduceListAdapter();
         productIntroduceFragmentListview.setAdapter(listadapter);
+        productIntroduceFragmentListview.setMode(PullToRefreshBase.Mode.PULL_UP_TO_REFRESH);
         productIntroduceFragmentListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {

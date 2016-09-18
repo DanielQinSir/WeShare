@@ -148,7 +148,7 @@ public interface HttpService
 
     @FormUrlEncoded
     @POST("/mobile/get_goods.php")//获取分类首页加号里所有商品的详情
-    Call<AssortExpandListAllGoodsBean> getAssortAllGoodsBean(@Field("catid")int catid,@Field("sid")String sid);
+    Call<AssortExpandListAllGoodsBean> getAssortAllGoodsBean(@Field("catid")String catid,@Field("sid")String sid);
 
     @FormUrlEncoded
     @POST("/mobile/cat.php")//获取分类首页里一个具体类目的商品详情

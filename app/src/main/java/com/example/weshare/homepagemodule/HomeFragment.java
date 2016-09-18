@@ -63,10 +63,16 @@ public class HomeFragment extends Fragment
             switch (position)
             {
                 case 0:
+                    //新品上架
+                    goToActivity(NewGoodsActivity.class);
                     break;
                 case 1:
+                    //每日菜谱
+                    goToActivity(DailyMenuActivity.class);
                     break;
                 case 2:
+                    //营养推荐
+                    goToActivity(NutritionRecommendActivity.class);
                     break;
                 case 3://售后
                     goToActivity(HelpActivity.class);
@@ -496,10 +502,10 @@ public class HomeFragment extends Fragment
                         switch (position)
                         {
                             case 0:
-
+                                startActivity(new Intent(mContext,TimeLimitedSaleActivity.class));
                                 break;
                             case 1:
-                                startActivity(new Intent(mContext, DailyRecommend.class));
+                                startActivity(new Intent(mContext, DailyRecommendActivity.class));
                                 break;
                             case 2:
                                 startActivity(new Intent(mContext, LocalSale.class));
